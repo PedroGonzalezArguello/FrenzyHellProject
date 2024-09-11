@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/3D Models/25 Assets/Chimenea/lambert1.mat.meta
+<<<<<<<< Updated upstream:Assets/3D Models/25 Assets/Chimenea/lambert1.mat.meta
+guid: 400b28eaaa1a14743be719de0ed68f5f
+========
+guid: 1872c6d62d756c44b85cd9b4262c7713
+>>>>>>>> Stashed changes:Assets/Scenes/LevelTuto/NavMesh-EnemiesFloor.asset.meta
+========
+guid: 21ee8a99135fb7447bd9a94f5cc1a064
+>>>>>>>> proyecto:Assets/Materials/Spike.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

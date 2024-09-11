@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2332606363790595795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7275770182608045467}
+  - component: {fileID: 8059264719196215043}
+  m_Layer: 0
+  m_Name: FrenzyManager
+  m_TagString: FrenzyManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7275770182608045467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332606363790595795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8059264719196215043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332606363790595795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d657841035f95489e4fbe145be3e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frenzyMeterIMG: {fileID: 0}
+  dpm: {fileID: 0}
+  respawn: {fileID: 0}
+  guns: {fileID: 0}
+  custombullet: {fileID: 5482047113385515350, guid: fc30bbc9348969346bc0c2e65827da62, type: 3}
+  cameraShake: {fileID: 0}
+  HpAnimator: {fileID: 0}
+  currentFrenzy: 0
+  startingFrenzy: 60
+  frenzy1Points: 50
+  frenzy1Increase: 1
+  frenzy1Applied: 0
+  frenzy2Points: 60
+  frenzy2Increase: 1
+  frenzy2Applied: 0
+  frenzy3Points: 70
+  frenzy3Increase: 1
+  frenzy3Applied: 0
+  frenzy4Points: 80
+  frenzy4Increase: 1
+  frenzy4Applied: 0
+  frenzy5Points: 90
+  frenzy5Increase: 1
+  frenzy5Applied: 0
+  safeGuard: 0
+  safeGuardTime: 5

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Bullet
+  - EnemyBullet
+  - FrenzyManager
+  - Grappable
+  - ball
+  - SpikeFloor
+  - VictoryCollider
+  - SpaceToDouble
+  - JumpShift
+  - Turret
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - UI.2
+  - Wall
+  - Ground
+  - Grappable
+  - Enemy
+  - Bullet
+  - Player
+  - EnemyBullet
+  - Roof
+  - FlyingEnemySurface
+  - projectileVFX
+  - CoinBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: HUD
+    uniqueID: 3687581069
+    locked: 0
