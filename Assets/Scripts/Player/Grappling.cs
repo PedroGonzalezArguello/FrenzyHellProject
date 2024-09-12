@@ -135,7 +135,7 @@ public class Grappling : MonoBehaviour
         float hookshootSpeedMax = 45f;
         float hookshootSpeed = Mathf.Clamp(Vector3.Distance(transform.position, grapplePoint), hookshootSpeedMin, hookshootSpeedMax);
         float hookshootSpeedMulti = 2f;
-        float speed = 60f;
+        float speed = 80f;
         StartCoroutine(MoveToGrapplePoint(grapplePoint, speed));
 
 
@@ -156,7 +156,7 @@ public class Grappling : MonoBehaviour
         }
         */
 
-        while (Vector3.Distance(transform.position, targetPosition) > 1.3f) {
+        while (Vector3.Distance(transform.position, targetPosition) > 1.6f) {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
             print(Vector3.Distance(transform.position, targetPosition));
