@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AcidTxt:
-        m_Texture: {fileID: 2800000, guid: 9c57e00af57bed240af28204986ec91c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1061c89acece5a54197e0c6f1bcce3e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTxt:
-        m_Texture: {fileID: 2800000, guid: 9c57e00af57bed240af28204986ec91c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1061c89acece5a54197e0c6f1bcce3e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -125,10 +125,10 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseSpeed: 0.02
-    - _NoiseValue: 1
+    - _NoiseSpeed: -0.005
+    - _NoiseValue: 0.5
     - _OcclusionStrength: 1
-    - _OffsetSpeed: 0
+    - _OffsetSpeed: 0.05
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
