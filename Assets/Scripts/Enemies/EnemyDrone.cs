@@ -4,19 +4,12 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyDrone : MonoBehaviour
+public class EnemyDrone : Enemy
 {
-    public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer, whatIsWall;
-    public float health;
-    public FrenzyManager frenzyManager;
+    [Header("EnemyDrone - Referencias")]
     public Transform shootPoint;
-    public Rigidbody rb;
-    public SoundManager soundManager;
-    public ParticleSystem particles;
     //public NavMeshAgent agent;
 
-    public bool isAlive;
     
     //Animation
     public Animation Anim;
@@ -28,7 +21,6 @@ public class EnemyDrone : MonoBehaviour
     public float fowardForce;
     public bool alreadyAttacked;
     public GameObject projectile;
-    public float movementSpeed;
 
     // Patrolling
     private bool isPatrolling = false;
@@ -40,38 +32,19 @@ public class EnemyDrone : MonoBehaviour
     private Vector3 direction;
     public float rotationSpeed = 5f; // Nueva variable para la velocidad de rotación
 
-    // States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
-    public float pointsOnKill;
 
     // Death Animation
     public float fowardAnimForce;
     public float downAnimForce;
-    public bool isDestroyable;
-    public GameObject explosion;
 
     //Eventos
     public delegate void EnemigoEliminadoHandler(EnemyDrone enemydrone);
     public static event EnemigoEliminadoHandler EnemigoEliminado;
 
-    private void Awake()
-    {
-        player = GameObject.Find("Player")?.transform;
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        isDestroyable = false;
-        isAlive = true;
-        //agent = GetComponent<NavMeshAgent>();
-    }
 
-    void Start()
+    protected override void Start()
     {
-        var frenzyManagerInstance = GameObject.FindGameObjectWithTag("FrenzyManager");
-        if (frenzyManagerInstance != null)
-        {
-            frenzyManager = frenzyManagerInstance.GetComponent<FrenzyManager>();
-        }
+        base.Start();
         patrolCenter = transform.position; // Fijar el centro del patrullaje a la posición inicial del dron
     }
 
@@ -79,26 +52,26 @@ public class EnemyDrone : MonoBehaviour
     {
         if (isAlive)
         {
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
+            _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
 
-            if (!playerInAttackRange && !playerInSightRange)
+            if (!_playerInAttackRange && !_playerInSightRange)
             {
                 if (!isPatrolling) StartCoroutine(Patrol());
             }
-            if (playerInSightRange && !playerInAttackRange)
+            if (_playerInSightRange && !_playerInAttackRange)
             {
                 ChasePlayer();
                 isPatrolling = false;
-                transform.LookAt(player.position);
+                transform.LookAt(_player.position);
             }
-            if (playerInAttackRange && playerInSightRange)
+            if (_playerInAttackRange && _playerInSightRange)
             {
                 if (!alreadyAttacked)
                 {
                     StartCoroutine(PrepareAndAttackPlayer());
                 }
-                transform.LookAt(player.position);
+                transform.LookAt(_player.position);
             }
         }
     }
@@ -131,11 +104,11 @@ public class EnemyDrone : MonoBehaviour
 
     private void ChasePlayer()
     {
-        Vector3 playerPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+        Vector3 playerPosition = new Vector3(_player.position.x, transform.position.y, _player.position.z);
         Vector3 moveDirection = (playerPosition - transform.position).normalized;
 
         Vector3 moveDirectionXZ = new Vector3(moveDirection.x, 0f, moveDirection.z);
-        Vector3 newPosition = transform.position + moveDirectionXZ * movementSpeed * Time.deltaTime;
+        Vector3 newPosition = transform.position + moveDirectionXZ * _movementSpeed * Time.deltaTime;
         newPosition.y = transform.position.y; // Mantener la posición Y constante
         transform.position = newPosition;
 
@@ -150,7 +123,7 @@ public class EnemyDrone : MonoBehaviour
 
         // Reproducir sonido de preparación
         SoundManager.PlaySound(SoundType.DRONECHARGE, SoundManager.Instance.GetSFXVolume());
-        particles.Play();
+        _particles.Play();
 
         // Esperar un momento antes de atacar
         yield return new WaitForSeconds(.8f); // Ajusta el tiempo según sea necesario
@@ -173,76 +146,52 @@ public class EnemyDrone : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int dmg)
     {
-        health -= damage;
-        string DamagePopUp = "X";
-        PopUpManager._current.PopUp(transform.position,DamagePopUp, Color.red);
         SoundManager.PlaySound(SoundType.METALHIT, SoundManager.Instance.GetSFXVolume());
+        base.TakeDamage(dmg);
+    }
 
-        if (health <= 0 && isAlive)
-        {
+    protected override void Death()
+    {
             isAlive = false;
-            frenzyManager.AddPoints(pointsOnKill);
+            _frenzyManager.AddPoints(_pointsOnKill);
             PlayDeathAnimation();
 
-            if(EnemigoEliminado != null)
+            if (EnemigoEliminado != null)
             {
                 EnemigoEliminado(this);
             }
-        }
     }
 
-    private void PlayDeathAnimation()
-    {
-        Anim.Play();
-        rb.useGravity = true;
-        rb.velocity = Vector3.zero; // Detener el movimiento actual
-        rb.AddForce(transform.forward * fowardAnimForce + Vector3.down * downAnimForce, ForceMode.Impulse);
-        isDestroyable = true;
-        SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
-        Invoke(nameof(DestroyEnemy), 0.5f);
-    }
 
-    private void DestroyEnemy()
-    {
-        if (explosion != null)
-        {
-            GameObject explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(explosionInstance, 0.1f);
-        }
+    
 
-        Destroy(gameObject, 0.1f);
-    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, _attackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(transform.position, _sightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(patrolCenter, new Vector3(patrolXDistance * 2, 1, patrolZDistance * 2)); // Dibujar el área de patrullaje en forma de cubo
     }
-
+    private void PlayDeathAnimation()
+    {
+        fowardAnimForce = 6;
+        Anim.Play();
+        _rb.useGravity = true;
+        _rb.velocity = Vector3.zero; // Detener el movimiento actual
+        _rb.AddForce(transform.forward * fowardAnimForce + Vector3.down * downAnimForce, ForceMode.Impulse);
+        SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
+        Explode(2f);
+    }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<DavesPM>() != null)
         {
-            fowardAnimForce = 6;
-            Anim.Play();
-            rb.useGravity = true;
-            rb.velocity = Vector3.zero; // Detener el movimiento actual
-            rb.AddForce(-transform.forward * fowardAnimForce + Vector3.down * -downAnimForce, ForceMode.Impulse);
-            //isDestroyable = true;
-            SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
-            Invoke(nameof(DestroyEnemy), 2f);
+            Death();
         }
-
-            if (isDestroyable)
-            {
-                SoundManager.PlaySound(SoundType.DRONECOLLISION, SoundManager.Instance.GetSFXVolume());
-                Destroy(gameObject);
-            }
     }
 }

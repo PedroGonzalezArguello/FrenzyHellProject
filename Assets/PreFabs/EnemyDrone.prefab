@@ -201,23 +201,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88414ea6e1d721a4d9f44105a0246a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3902059036443534107, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
-  whatIsGround:
+  _health: 0
+  isAlive: 0
+  _popUp: X
+  _player: {fileID: 0}
+  _rb: {fileID: 0}
+  _frenzyManager: {fileID: 0}
+  _soundManager: {fileID: 0}
+  _particles: {fileID: 5786787570944118249}
+  _whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsPlayer:
+  _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 4096
-  whatIsWall:
+  _whatIsWall:
     serializedVersion: 2
     m_Bits: 128
-  health: 40
-  frenzyManager: {fileID: 8059264719196215043, guid: 800ae43f4c68ac34fb8b074b1c08bd7a, type: 3}
+  _explosionPrefab: {fileID: 1000013462590818, guid: 11479eefd4125644f9301b839b2569b5, type: 3}
+  _movementSpeed: 28
+  _playerInSightRange: 0
+  _playerInAttackRange: 0
+  _sightRange: 200
+  _attackRange: 70
+  _pointsOnKill: 15
   shootPoint: {fileID: 2414512636879846101}
-  rb: {fileID: 3506489538148057219}
-  soundManager: {fileID: 0}
-  particles: {fileID: 5786787570944118249}
-  isAlive: 0
   Anim: {fileID: 6251079467622395139}
   animator: {fileID: 7540893702993531069}
   timeBetweenAttacks: 0.2
@@ -225,20 +233,12 @@ MonoBehaviour:
   fowardForce: 60
   alreadyAttacked: 0
   projectile: {fileID: 7546153332670608377, guid: fc30bbc9348969346bc0c2e65827da62, type: 3}
-  movementSpeed: 28
   patrolXDistance: 0
   patrolZDistance: 0
   patrolSpeed: 0
   rotationSpeed: 5
-  sightRange: 200
-  attackRange: 70
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  pointsOnKill: 15
   fowardAnimForce: 50
   downAnimForce: 5
-  isDestroyable: 0
-  explosion: {fileID: 1000013462590818, guid: 11479eefd4125644f9301b839b2569b5, type: 3}
 --- !u!1001 &4944519399373778628
 PrefabInstance:
   m_ObjectHideFlags: 0
