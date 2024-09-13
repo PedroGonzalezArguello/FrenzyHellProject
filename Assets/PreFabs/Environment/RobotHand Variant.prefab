@@ -68,8 +68,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotHand Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: eecb2058f2948d84a941e3de99944808, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: eecb2058f2948d84a941e3de99944808, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37ae350396dfc9e43a2fa9b27fbbb46f, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3779745573541866595, guid: eecb2058f2948d84a941e3de99944808, type: 3}
+    - {fileID: -3957782524123411102, guid: eecb2058f2948d84a941e3de99944808, type: 3}
+    - {fileID: -8513424388201257645, guid: eecb2058f2948d84a941e3de99944808, type: 3}
+    - {fileID: -8418885108249170206, guid: eecb2058f2948d84a941e3de99944808, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eecb2058f2948d84a941e3de99944808, type: 3}

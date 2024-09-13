@@ -175,7 +175,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 9120246107605759987}
   m_SourcePrefab: {fileID: 100100000, guid: 04da7e82ed6047444829ba6dc6d74c12, type: 3}
---- !u!1 &4369354435010495829 stripped
+--- !u!1 &3486482534367836165 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 04da7e82ed6047444829ba6dc6d74c12, type: 3}
   m_PrefabInstance: {fileID: 4369354435010495828}
@@ -186,7 +186,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4369354435010495829}
+  m_GameObject: {fileID: 3486482534367836165}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -201,7 +201,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.59527856, y: 7.8510475, z: 15.868741}
   m_Center: {x: 4.7380447, y: 3.9715557, z: -0.09805043}
---- !u!4 &4369354435010495830 stripped
+--- !u!4 &4263125198911922879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 04da7e82ed6047444829ba6dc6d74c12, type: 3}
   m_PrefabInstance: {fileID: 4369354435010495828}
@@ -271,12 +271,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 62b716d586876a74f8bc8397f69a5bc9, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3268e026428459a438d02bf9af6e1a97, type: 2}
     - target: {fileID: 919132149155446097, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
       propertyPath: m_Name
-      value: Prensa Variant
+      value: Prensa
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -286,7 +294,7 @@ PrefabInstance:
       addedObject: {fileID: 8392857474497549627}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4369354435010495830}
+      addedObject: {fileID: 4263125198911922879}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3597a97af8678348a289bbdf2b59bc6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9159817544211030310}
