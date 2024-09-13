@@ -159,9 +159,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -264430861247414160, guid: 574468fc8ed3e25478deb3097bd88b41, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -264430861247414160, guid: 574468fc8ed3e25478deb3097bd88b41, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9e3ab608c9c14ec4c81a10c233a3866c, type: 2}
+    - target: {fileID: -264430861247414160, guid: 574468fc8ed3e25478deb3097bd88b41, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3268e026428459a438d02bf9af6e1a97, type: 2}
     - target: {fileID: 919132149155446097, guid: 574468fc8ed3e25478deb3097bd88b41, type: 3}
       propertyPath: m_Name
       value: dron2cabeza
@@ -304,9 +312,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3316209038747775882, guid: 71d3ba5284b7cd94f8636701f8af4534, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3316209038747775882, guid: 71d3ba5284b7cd94f8636701f8af4534, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: abf39151033cc374cae0fb33542ef376, type: 2}
+    - target: {fileID: -3316209038747775882, guid: 71d3ba5284b7cd94f8636701f8af4534, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3268e026428459a438d02bf9af6e1a97, type: 2}
     - target: {fileID: 919132149155446097, guid: 71d3ba5284b7cd94f8636701f8af4534, type: 3}
       propertyPath: m_Name
       value: KamikazeEnemy
