@@ -743,10 +743,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e111db81-12d0-4a15-b2c4-d3d6c8427c2a"
     },
-    "m_Name": "Heigth",
+    "m_Name": "Height",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Heigth",
-    "m_DefaultReferenceName": "_Heigth",
+    "m_RefNameGeneratedByDisplayName": "Height",
+    "m_DefaultReferenceName": "_Height",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3420,9 +3420,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1878.9998779296875,
-            "y": 1498.9998779296875,
-            "width": 131.0001220703125,
+            "x": 1878.0,
+            "y": 1499.0,
+            "width": 131.0,
             "height": 34.0
         }
     },
@@ -3449,7 +3449,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "e6bdd2cdc6374363bd830350bdcfa7a1",
     "m_Id": 0,
-    "m_DisplayName": "Heigth",
+    "m_DisplayName": "Height",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
