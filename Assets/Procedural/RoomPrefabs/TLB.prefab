@@ -2571,6 +2571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openSide: 3
+  rand: 0
 --- !u!1 &8179382496585028981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,6 +3402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openSide: 1
+  rand: 0
 --- !u!1 &8945625758155833180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,6 +3412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8808544945884017302}
+  - component: {fileID: -1166053804370229911}
   m_Layer: 0
   m_Name: TLB
   m_TagString: Untagged
@@ -3427,8 +3430,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -45, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6569043801466431616}
   - {fileID: 3444563113424563278}
@@ -3436,6 +3439,18 @@ Transform:
   - {fileID: 4060804077824703748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1166053804370229911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945625758155833180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2564995e51526294d95b7ee95cf5a050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9057588259936359440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,3 +3546,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openSide: 2
+  rand: 0
