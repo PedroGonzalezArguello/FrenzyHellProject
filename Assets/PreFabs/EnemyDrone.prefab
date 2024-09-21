@@ -309,7 +309,7 @@ MonoBehaviour:
   fowardForce: 60
   alreadyAttacked: 0
   projectile: {fileID: 7546153332670608377, guid: fc30bbc9348969346bc0c2e65827da62, type: 3}
-  movementSpeed: 28
+  movementSpeed: 0
   patrolXDistance: 0
   patrolZDistance: 0
   patrolSpeed: 0

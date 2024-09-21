@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,39 @@ public class GameManager : MonoBehaviour
 
     public enum GameState { Victory, Defeat, OnMatch }
     private GameState currentState;
+
+    // ------------- NUEVAS VARIABLES PARA HABITACIONES GENERADAS ------------- 
+    public List<GameObject> generatedRooms = new List<GameObject>(); // Lista global de habitaciones
+    public static GameManager instance; // Singleton del GameManager
+
+    private void Awake()
+    {
+        // Asegurarse de que solo haya una instancia del GameManager
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Mantenerlo en todas las escenas si es necesario
+        }
+        else
+        {
+            Destroy(gameObject); // Evitar duplicados del GameManager
+        }
+    }
+
+    // Método para agregar una habitación a la lista global
+    public void AddRoom(GameObject room)
+    {
+        generatedRooms.Add(room);
+        Debug.Log("Habitación añadida: " + room.name + " - Total habitaciones: " + generatedRooms.Count);
+    }
+
+    // Método para verificar el número total de habitaciones generadas
+    public int GetRoomCount()
+    {
+        return generatedRooms.Count;
+    }
+
+    // ------------------------------------------------------------------------
 
     private void Start()
     {
@@ -58,7 +92,6 @@ public class GameManager : MonoBehaviour
         gun.pauseActive = true;
         frenzyManager.enabled = false;
         pauseMenu.enabled = false;
-        
 
         // Esperar y luego recargar la escena
         StartCoroutine(WaitAndReloadScene());
@@ -71,7 +104,6 @@ public class GameManager : MonoBehaviour
 
         // Fade in
         yield return StartCoroutine(Fade(1f));
-
     }
 
     private IEnumerator Fade(float targetAlpha)
@@ -147,6 +179,7 @@ public class GameManager : MonoBehaviour
         frenzyManager.enabled = true;
         SceneManager.LoadScene("Level3");
     }
+
     public void Level3Button()
     {
         Time.timeScale = 1;
