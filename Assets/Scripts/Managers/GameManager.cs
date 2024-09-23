@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject victoryUI;
     public GameObject defeatUI;
-    public CanvasGroup fadeCanvasGroup; // Arrastra tu CanvasGroup aquí
-    private float fadeDuration = 0.5f; // Duración del fade
+    public CanvasGroup fadeCanvasGroup;
+    private float fadeDuration = 0.5f;
 
     public PlayerLook playerlook;
     public FrenzyManager frenzyManager;
@@ -18,38 +18,61 @@ public class GameManager : MonoBehaviour
     public enum GameState { Victory, Defeat, OnMatch }
     private GameState currentState;
 
-    // ------------- NUEVAS VARIABLES PARA HABITACIONES GENERADAS ------------- 
-    public List<GameObject> generatedRooms = new List<GameObject>(); // Lista global de habitaciones
-    public static GameManager instance; // Singleton del GameManager
+    [Header("Habitaciones")]
+    public List<GameObject> generatedRooms = new List<GameObject>(); 
+    public List<GameObject> generatedCorridors = new List<GameObject>(); 
+    public static GameManager instance;
 
     private void Awake()
     {
-        // Asegurarse de que solo haya una instancia del GameManager
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Mantenerlo en todas las escenas si es necesario
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            Destroy(gameObject); // Evitar duplicados del GameManager
+            Destroy(gameObject);
         }
     }
 
-    // Método para agregar una habitación a la lista global
     public void AddRoom(GameObject room)
     {
+        
+        if (generatedRooms.Count > 0)
+        {
+            GameObject previousRoom = generatedRooms[generatedRooms.Count - 1];
+            previousRoom.SetActive(false); 
+            Debug.Log("Habitación anterior desactivada: " + previousRoom.name);
+        }
+
         generatedRooms.Add(room);
-        Debug.Log("Habitación añadida: " + room.name + " - Total habitaciones: " + generatedRooms.Count);
+        Debug.Log("Nueva habitación añadida: " + room.name + " - Total habitaciones: " + generatedRooms.Count);
     }
 
-    // Método para verificar el número total de habitaciones generadas
+    public void AddCorridor(GameObject corridor)
+    {
+        // Desactivar el pasillo anterior si existe
+        if (generatedCorridors.Count > 0)
+        {
+            GameObject previousCorridor = generatedCorridors[generatedCorridors.Count - 1];
+            previousCorridor.SetActive(false); 
+            Debug.Log("Pasillo anterior desactivado: " + previousCorridor.name);
+        }
+
+        generatedCorridors.Add(corridor);
+        Debug.Log("Nuevo pasillo añadido: " + corridor.name + " - Total pasillos: " + generatedCorridors.Count);
+    }
+
     public int GetRoomCount()
     {
         return generatedRooms.Count;
     }
 
-    // ------------------------------------------------------------------------
+    public int GetCorridorCount()
+    {
+        return generatedCorridors.Count;
+    }
 
     private void Start()
     {

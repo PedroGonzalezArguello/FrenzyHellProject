@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RandomRoomSpawner : MonoBehaviour
 {
-    public GameObject corridorPrefab; // Prefab del pasillo
-    public Transform corridorSpawnPoint; // Donde se genera el pasillo
+    public GameObject corridorPrefab;
+    public Transform corridorSpawnPoint; 
 
     private bool corridorSpawned = false;
 
@@ -11,13 +11,12 @@ public class RandomRoomSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player") && !corridorSpawned)
         {
-            // Instanciar el pasillo
             GameObject corridor = Instantiate(corridorPrefab, corridorSpawnPoint.position, corridorSpawnPoint.rotation);
 
-            // Pasar la referencia al pasillo, no es necesario ya que usa GameManager
-            Debug.Log("Pasillo generado desde la habitación");
+            GameManager.instance.AddCorridor(corridor);
 
-            // Marcar que ya se ha generado el pasillo
+            Debug.Log("Pasillo generado y añadido al GameManager");
+
             corridorSpawned = true;
         }
     }

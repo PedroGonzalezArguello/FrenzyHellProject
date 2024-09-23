@@ -7267,7 +7267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6357721240281010122}
   m_Layer: 0
-  m_Name: Room3
+  m_Name: Room4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8353,7 +8353,7 @@ Transform:
   m_GameObject: {fileID: 4906769048234211562}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -36.057926, y: 0, z: -60.392242}
+  m_LocalPosition: {x: -36.057926, y: 0, z: -50.49225}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -14379,7 +14379,7 @@ Transform:
   m_GameObject: {fileID: 9153583572739454339}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -36.057926, y: 0, z: 3.2077637}
+  m_LocalPosition: {x: -36.057926, y: 0, z: -3.1922302}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:

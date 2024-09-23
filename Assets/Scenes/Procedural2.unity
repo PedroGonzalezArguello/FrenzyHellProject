@@ -2429,6 +2429,8 @@ MonoBehaviour:
   frenzyManager: {fileID: 1893264127}
   gun: {fileID: 472844612}
   pauseMenu: {fileID: 1410731965}
+  generatedRooms: []
+  generatedCorridors: []
 --- !u!1 &472844611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,7 +2496,7 @@ MonoBehaviour:
   lr: {fileID: 653219763}
   shootParticle: {fileID: 2012005122}
   wr: {fileID: 318838166}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 444790434}
   muzzleFlash: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
   bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   firePoint: {fileID: 225167895}
