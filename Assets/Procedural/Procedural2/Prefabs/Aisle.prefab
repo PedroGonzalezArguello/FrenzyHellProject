@@ -61,8 +61,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 5.1101627}
+  m_Center: {x: 0, y: 0, z: -2.0550811}
 --- !u!114 &3919027363087668844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
   - {fileID: 4290678874038666878, guid: 0b83516bdefee594b924576a263fbadf, type: 3}
   - {fileID: 4290678874038666878, guid: 81f171b9bdc054a47bfd441feab96b43, type: 3}
   - {fileID: 4290678874038666878, guid: 9960c378780ba954f9f900a8d5540d71, type: 3}
+  - {fileID: 4290678874038666878, guid: 9d9fad2ca8604fb4da392b6bee28b099, type: 3}
   finalRoomPrefab: {fileID: 4290678874038666878, guid: a6844777945dbeb4aad77a70b64be1ed, type: 3}
   roomSpawnPoint: {fileID: 319991298846968638}
   maxRooms: 10

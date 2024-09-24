@@ -1730,6 +1730,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[30].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[31].sounds.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1777,6 +1781,10 @@ PrefabInstance:
       propertyPath: soundList.Array.data[29].sounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: fb37d6a6656a53342b16bc61243b73b1, type: 3}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[30].sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e6c23bcecbfa46e4fb3561ccff52293d, type: 3}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[31].sounds.Array.data[0]
       value: 
@@ -9921,7 +9929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1374960000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17680,7 +17688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1937090112
 RectTransform:
   m_ObjectHideFlags: 0

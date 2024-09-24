@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
     public enum GameState { Victory, Defeat, OnMatch }
     private GameState currentState;
 
-    [Header("Habitaciones")]
-    public List<GameObject> generatedRooms = new List<GameObject>(); 
+    [Header("Habitaciones y Pasillos")]
+    public List<GameObject> generatedRooms = new List<GameObject>();  
     public List<GameObject> generatedCorridors = new List<GameObject>(); 
     public static GameManager instance;
 
@@ -28,22 +28,23 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); 
         }
     }
 
+    
     public void AddRoom(GameObject room)
     {
-        
-        if (generatedRooms.Count > 0)
+        // Solo comenzamos a desactivar habitaciones cuando hay al menos 3
+        if (generatedRooms.Count >= 2)
         {
-            GameObject previousRoom = generatedRooms[generatedRooms.Count - 1];
-            previousRoom.SetActive(false); 
-            Debug.Log("Habitación anterior desactivada: " + previousRoom.name);
+            GameObject roomToDeactivate = generatedRooms[generatedRooms.Count - 2];
+            roomToDeactivate.SetActive(false);
+            Debug.Log("Habitación anterior desactivada: " + roomToDeactivate.name);
         }
 
         generatedRooms.Add(room);
@@ -52,14 +53,12 @@ public class GameManager : MonoBehaviour
 
     public void AddCorridor(GameObject corridor)
     {
-        // Desactivar el pasillo anterior si existe
-        if (generatedCorridors.Count > 0)
+        if (generatedCorridors.Count >= 2)
         {
-            GameObject previousCorridor = generatedCorridors[generatedCorridors.Count - 1];
-            previousCorridor.SetActive(false); 
-            Debug.Log("Pasillo anterior desactivado: " + previousCorridor.name);
+            GameObject corridorToDeactivate = generatedCorridors[generatedCorridors.Count - 2];
+            corridorToDeactivate.SetActive(false);
+            Debug.Log("Pasillo anterior desactivado: " + corridorToDeactivate.name);
         }
-
         generatedCorridors.Add(corridor);
         Debug.Log("Nuevo pasillo añadido: " + corridor.name + " - Total pasillos: " + generatedCorridors.Count);
     }
@@ -68,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         return generatedRooms.Count;
     }
-
     public int GetCorridorCount()
     {
         return generatedCorridors.Count;
@@ -87,7 +85,7 @@ public class GameManager : MonoBehaviour
         victoryUI.SetActive(false);
         defeatUI.SetActive(false);
 
-        // Hacer que el fade inicie transparente
+        
         fadeCanvasGroup.alpha = 0;
     }
 
@@ -122,7 +120,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeAndShowUI(GameObject uiElement)
     {
-        // Mostrar la UI
         uiElement.SetActive(true);
 
         // Fade in
@@ -131,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Fade(float targetAlpha)
     {
-        // Desvanecer la imagen
+        
         float startAlpha = fadeCanvasGroup.alpha;
         float elapsedTime = 0f;
 
