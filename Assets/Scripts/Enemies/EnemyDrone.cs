@@ -154,14 +154,15 @@ public class EnemyDrone : Enemy
 
     protected override void Death()
     {
-            isAlive = false;
-            _frenzyManager.AddPoints(_pointsOnKill);
-            PlayDeathAnimation();
+        base.Death();
+        isAlive = false;
+        _frenzyManager.AddPoints(_pointsOnKill);
+        PlayDeathAnimation();
 
-            if (EnemigoEliminado != null)
-            {
-                EnemigoEliminado(this);
-            }
+        if (EnemigoEliminado != null)
+        {
+            EnemigoEliminado(this);
+        }
     }
 
 

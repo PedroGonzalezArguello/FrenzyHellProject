@@ -97,6 +97,7 @@ public class KamikazeDrone : Enemy
 
     protected override void Death()
     {
+        base.Death();
         if (_explosionPrefab != null)
         {
 
