@@ -225,6 +225,7 @@ MonoBehaviour:
   _sightRange: 200
   _attackRange: 70
   _pointsOnKill: 15
+  _pointsOnDeath: 15
   shootPoint: {fileID: 2414512636879846101}
   Anim: {fileID: 6251079467622395139}
   animator: {fileID: 7540893702993531069}

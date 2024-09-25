@@ -24,7 +24,12 @@ public abstract class Enemy : Entity
     [SerializeField] protected float _pointsOnKill;
 
     protected bool _hasExploded;
+    [SerializeField]protected int _pointsOnDeath;
 
+    public int PointsOnDeath
+    {
+        get { return _pointsOnDeath; }
+    }
 
     public override void TakeDamage(int dmg)
     {
@@ -34,7 +39,7 @@ public abstract class Enemy : Entity
 
     protected override void Death()
     {
-        Destroy(gameObject);
+        PointsManager.Instance.AddPoints(_pointsOnDeath);
     }
 
     protected virtual void Explode()

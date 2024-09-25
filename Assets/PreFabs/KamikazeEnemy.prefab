@@ -487,6 +487,7 @@ MonoBehaviour:
   _sightRange: 200
   _attackRange: 3
   _pointsOnKill: 15
+  _pointsOnDeath: 15
   Anim: {fileID: 1162154534730635075}
   spawnForce: 0
   fowardAnimForce: 0
