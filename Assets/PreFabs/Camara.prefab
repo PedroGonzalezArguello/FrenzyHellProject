@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8580851206338547115}
   - component: {fileID: 4912140840757234621}
+  - component: {fileID: 5988959586582625325}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -94,6 +95,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &5988959586582625325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063124178444178258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &6479911224936761116
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,9 +160,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 3707361472530504310}
     m_Modifications:
     - target: {fileID: -8953117028335769294, guid: 1b370419d7036564ab3c46f143c37742, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8953117028335769294, guid: 1b370419d7036564ab3c46f143c37742, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 585d35377c081b14899e6b569a321304, type: 2}
+    - target: {fileID: -8953117028335769294, guid: 1b370419d7036564ab3c46f143c37742, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37ae350396dfc9e43a2fa9b27fbbb46f, type: 2}
     - target: {fileID: -8679921383154817045, guid: 1b370419d7036564ab3c46f143c37742, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.008483887
@@ -268,9 +300,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4265338650084452101, guid: 4bbcead59d2e6a740879704cd2419e67, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4265338650084452101, guid: 4bbcead59d2e6a740879704cd2419e67, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b6512cb1ac77c3b4b855c21a0c13016c, type: 2}
+    - target: {fileID: -4265338650084452101, guid: 4bbcead59d2e6a740879704cd2419e67, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37ae350396dfc9e43a2fa9b27fbbb46f, type: 2}
     - target: {fileID: 919132149155446097, guid: 4bbcead59d2e6a740879704cd2419e67, type: 3}
       propertyPath: m_Name
       value: CamaraSola
