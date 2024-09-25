@@ -156,7 +156,10 @@ public class EnemyDrone : Enemy
     {
             isAlive = false;
             _frenzyManager.AddPoints(_pointsOnKill);
-            PlayDeathAnimation();
+        GameObject explosionInstance = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+
+        //PlayDeathAnimation();
 
             if (EnemigoEliminado != null)
             {
