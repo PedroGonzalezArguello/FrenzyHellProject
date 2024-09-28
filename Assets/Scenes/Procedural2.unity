@@ -1667,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.size
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[24].name
@@ -1700,6 +1700,14 @@ PrefabInstance:
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[31].name
       value: GRAPPLEON
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[32].name
+      value: FREEZETIME
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[33].name
+      value: FREEZETIME
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[13].sounds.Array.size
@@ -1735,6 +1743,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: soundList.Array.data[31].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[32].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[33].sounds.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
@@ -1789,6 +1805,14 @@ PrefabInstance:
       propertyPath: soundList.Array.data[31].sounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 9c222ee3e25867740b1c21e8a56d6db7, type: 3}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[32].sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c72693a949e5ae42ab0625eee653b72, type: 3}
+    - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: soundList.Array.data[33].sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1902212277229374138, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2
@@ -2474,7 +2498,7 @@ MonoBehaviour:
   damage: 45
   timeBetweenShooting: 0
   spread: 0
-  range: 200
+  range: 10000
   reloadTime: 0
   timeBetweenShots: 0.1
   baseTimeBetweenShooting: 0.25

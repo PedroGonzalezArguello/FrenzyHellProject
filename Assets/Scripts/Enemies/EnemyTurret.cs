@@ -122,13 +122,18 @@ public class EnemyTurret : MonoBehaviour
     
     private System.Collections.IEnumerator TurretOffCoroutine()
     {
-        // Desactiva la torreta
+        Time.timeScale = 0f;
+        SoundManager.PlaySound(SoundType.FREEZETIME, SoundManager.Instance.GetSFXVolume());
+        yield return new WaitForSecondsRealtime(0.2f);
+        
+
+        Time.timeScale = 1f;
+
         this.enabled = false;
 
-        // Espera 5 segundos
         yield return new WaitForSeconds(5f);
+        turretOffAnim.Stop();
 
-        // Reactiva la torreta
         this.enabled = true;
     }
 

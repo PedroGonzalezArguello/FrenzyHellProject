@@ -177,7 +177,12 @@ public class GunSystem : MonoBehaviour
         int layerMask = ~LayerMask.GetMask("projectileVFX");
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayEnemyHit, range, whatIsEnemy & layerMask))
         {
-            
+            ButtonDoor button = rayEnemyHit.collider.GetComponent<ButtonDoor>();
+            if (button != null)
+            {
+                button.Open();
+                SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
+            }
 
             EnemiesScript enemy = rayEnemyHit.collider.GetComponent<EnemiesScript>();
             if (enemy != null)
@@ -239,12 +244,7 @@ public class GunSystem : MonoBehaviour
             }
             
 
-            ButtonDoor button = rayEnemyHit.collider.GetComponent<ButtonDoor>();
-            if (button != null)
-            {
-                button.Open();
-                SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
-            }
+            
 
             // Empujar el objeto golpeado si tiene un Rigidbody
             Rigidbody rb = rayEnemyHit.collider.GetComponent<Rigidbody>();
