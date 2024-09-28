@@ -41,9 +41,6 @@ public class GunSystem : MonoBehaviour
     public ParticleSystem shootParticle;
     public WallRunning wr;
     SoundManager soundManager;
-    EnemiesScript EnemiesScript;
-    EnemyDrone EnemyDrone;
-    CoinBullet coinBullet;
     public GameManager gameManager;
 
     //Graphics
@@ -53,7 +50,7 @@ public class GunSystem : MonoBehaviour
     private GameObject effectToSpawn;
 
     public Animation RecoilCam;
-    
+
     // Fuerza de empuje
     public float pushForce = 500f;
 
@@ -63,23 +60,8 @@ public class GunSystem : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
 
-
         bulletsLeft = magazineSize;
         readyToShoot = true;
-
-        GameObject enemyAiTutorialInstance = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyAiTutorialInstance != null)
-        {
-            EnemiesScript = enemyAiTutorialInstance.GetComponent<EnemiesScript>();
-        }
-
-        GameObject enemyDroneInstance = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyDroneInstance != null)
-        {
-            EnemyDrone = enemyDroneInstance.GetComponent<EnemyDrone>();
-        }
-
-        BulletEffect = GetComponent<BulletTrailEffect>();
     }
 
     private void Start()
@@ -92,22 +74,20 @@ public class GunSystem : MonoBehaviour
 
     private void Update()
     {
-        if(pauseActive != true)
+        if (pauseActive != true)
         {
-
             MyInput();
 
             //SetText
             text.SetText(bulletsLeft + " / " + magazineSize);
 
-            //Recarga Auto
+            //Recarga automática
             if (bulletsLeft == 0 && !reloading)
             {
                 Reload();
                 reloading = true;
             }
         }
-        
     }
 
     private void MyInput()
@@ -115,45 +95,36 @@ public class GunSystem : MonoBehaviour
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        //Reloading 
+        // Recargar
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
         {
             Reload();
             reloading = true;
         }
-        //Reload automatically when trying to shoot without ammo
+        // Recargar automáticamente cuando intentas disparar sin balas
         if (readyToShoot && shooting && !reloading && bulletsLeft <= 0 || Input.GetKeyDown(KeyCode.R) && bulletsLeft > 5 && !reloading && readyToShoot && shooting)
         {
             Reload();
             reloading = true;
         }
 
-        //Shoot
+        // Disparar
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
             SpawnVFX();
             bulletsShot = bulletsPerTap;
             Shoot();
         }
-        /*
-        if(Input.GetKey(KeyCode.Space))
-        {
-            gunAnim.SetBool("OnJump" , true);
-        }
-        else
-        {
-            gunAnim.SetBool("OnJump", false);
-        }*/
-
     }
 
     private void Shoot()
     {
         readyToShoot = false;
-        //Play Sound
+
+        // Reproducir sonido
         SoundManager.PlaySound(SoundType.GUN1, SoundManager.Instance.GetSFXVolume());
 
-        //Play Anim
+        // Reproducir animación
         gunAnim.SetTrigger("Recoil");
 
         if (!wr.wallLeft && !wr.wallRight)
@@ -161,22 +132,27 @@ public class GunSystem : MonoBehaviour
             RecoilCam.Play();
         }
 
-
-        //Spread
+        // Spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
-        //Calculate Direction with Spread
+        // Calcular dirección con Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
         lr.SetPosition(0, fpsCam.transform.forward);
 
-        //ShakeCamera
-        //CameraShaker.Instance.ShakeOnce(magn, rough, fadeIn, fadeOut);
 
-        //RayCast
+        float sphereRadius = 4;
         int layerMask = ~LayerMask.GetMask("projectileVFX");
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayEnemyHit, range, whatIsEnemy & layerMask))
+
+        if (Physics.SphereCast(fpsCam.transform.position, sphereRadius, direction, out rayEnemyHit, range, whatIsEnemy & layerMask))
         {
+            // Intentar aplicar daño al objeto impactado
+            IDamageable damageable = rayEnemyHit.collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+
             ButtonDoor button = rayEnemyHit.collider.GetComponent<ButtonDoor>();
             if (button != null)
             {
@@ -184,78 +160,18 @@ public class GunSystem : MonoBehaviour
                 SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
             }
 
-            EnemiesScript enemy = rayEnemyHit.collider.GetComponent<EnemiesScript>();
-            if (enemy != null)
+            EnemyTurret turret = rayEnemyHit.collider.GetComponent<EnemyTurret>();
+            if (turret != null)
             {
-                // Apply damage to the enemy
-                enemy.TakeDamage(damage);
+                turret.TurretOffTime();
+                SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
             }
 
-            EnemyDrone enemyDrone = rayEnemyHit.collider.GetComponent<EnemyDrone>();
-            if (enemyDrone != null)
-            {
-                // Apply damage to the enemy
-                enemyDrone.TakeDamage(damage);
-                SoundManager.PlaySound(SoundType.METALHIT, SoundManager.Instance.GetSFXVolume());
-            }
-
-            KamikazeDrone kamikazeDrone = rayEnemyHit.collider.GetComponent<KamikazeDrone>();
-            if (kamikazeDrone != null)
-            {
-                // Apply damage to the enemy
-                kamikazeDrone.TakeDamage(damage);
-                SoundManager.PlaySound(SoundType.METALHIT, SoundManager.Instance.GetSFXVolume());
-            }
-
-            CoinBullet coin = rayEnemyHit.collider.GetComponent<CoinBullet>();
-            if (coin != null)
-            {
-                coin.Explode();
-            }
-
-            /*
-            MiniBoss bossWin = rayEnemyHit.collider.GetComponent<MiniBoss>();
-            if (bossWin != null)
-            {
-                // Apply damage to the enemy
-                bossWin.TakeDamage(damage);
-                SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
-            }*/
-
-            BossHead firstBoss = rayEnemyHit.collider.GetComponent<BossHead>();
-            if (firstBoss != null)
-            {
-                // Apply damage to the FirsBoss
-                firstBoss.TakeDamage(damage);
-                SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
-            }
-
-            ExplosiveTrap explosiveTrap = rayEnemyHit.collider.GetComponent<ExplosiveTrap>();
-            if (explosiveTrap != null)
-            {
-                explosiveTrap.Explode1();
-            }
-
-            EnemyTurret turretHead = rayEnemyHit.collider.GetComponent<EnemyTurret>();
-            if (turretHead != null)
-            {
-                
-                turretHead.TurretOffTime();
-            }
-            
-
-            
-
-            // Empujar el objeto golpeado si tiene un Rigidbody
             Rigidbody rb = rayEnemyHit.collider.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 rb.AddForce(-rayEnemyHit.normal * pushForce);
             }
-            
-
-            //BulletEffect.CreateBulletTrail(muzzle, hit.point);
-            SoundManager.PlaySound(SoundType.GUN1, SoundManager.Instance.GetSFXVolume());
         }
 
         Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, shootable);
@@ -295,12 +211,10 @@ public class GunSystem : MonoBehaviour
     {
         GameObject vfx;
 
-        if(firePoint != null)
+        if (firePoint != null)
         {
             vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.identity);
-
             vfx.transform.localRotation = firePoint.transform.rotation;
-
             vfx.layer = LayerMask.NameToLayer("projectileVFX");
         }
     }
