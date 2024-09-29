@@ -1,37 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class CustomBullet : MonoBehaviour
+public class CustomBullet : MonoBehaviour, IParryable
 {
-    //Assignables
+    // Asignables y propiedades de la bala
     public Rigidbody rb;
     public GameObject explosion;
     public LayerMask whatIsEnemies;
 
-    //Stats
-    [Range(0f,1f)]
     public float bounciness;
     public bool useGravity;
     public Color materialColor;
-    
 
-    //Damage
     public int explosionDamage;
     public float explosionRange;
-    //public float explosionForce;
 
-    //Lifetime
     public int maxCollisions;
     public float maxLifetime;
     public bool explodeOnTouch = true;
 
-    int collisions;
-    bool hasExploded; // Flag to track if an explosion has occurred
-    //public bool isPlayerBullet; // Indica si el proyectil fue disparado por el jugador
+    private int collisions;
+    private bool hasExploded = false;
 
     public FrenzyManager frenzyManager;
-
-
-    PhysicMaterial physics_mat;
 
     private void Start()
     {
@@ -41,111 +32,89 @@ public class CustomBullet : MonoBehaviour
         {
             frenzyManager = frenzyManagerInstance.GetComponent<FrenzyManager>();
         }
-        
     }
 
     private void Update()
     {
-        //When to explode:
         if (collisions > maxCollisions) Explode();
-
-        //Count down lifetime
         maxLifetime -= Time.deltaTime;
         if (maxLifetime <= 0) Explode();
+    }
 
+    // Implementación del parry
+    public IEnumerator Parry()
+    {
+        // Congelar el tiempo
+        Time.timeScale = 0f;
+        SoundManager.PlaySound(SoundType.FREEZETIME, SoundManager.Instance.GetSFXVolume());
+
+        // Esperar 1 segundo en tiempo real (sin ser afectado por Time.timeScale)
+        yield return new WaitForSecondsRealtime(1f);
+
+        // Restaurar el tiempo
+        Time.timeScale = 1f;
+
+        // Destruir la bala después del parry
+        Destroy(gameObject);
     }
 
     private void Explode()
     {
-        if (!hasExploded) // Only execute explosion logic if it hasn't already exploded
+        if (!hasExploded)
         {
-            hasExploded = true; // Set the flag to true to prevent further explosions
+            hasExploded = true;
 
-            // Instantiate explosion
             if (explosion != null)
             {
                 GameObject explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
-                Destroy(explosionInstance, 2f); // Destroy the explosion after 2 seconds
+                Destroy(explosionInstance, 2f);
             }
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
 
             foreach (Collider collider in colliders)
             {
-                // Verifica si el objeto detectado es el jugador
                 if (collider.CompareTag("Player"))
                 {
                     frenzyManager.TakeDamage(explosionDamage);
-                    rb = collider.GetComponentInParent<Rigidbody>();
-                    //rb.AddExplosionForce(explosionForce, transform.position, explosionRange);
-                    //Debug.Log("RigidBody y fuerza aplicada");
-                    
-                }
-                else
-                {
-                    /*
-                        //Check for enemies 
-                        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
-                        for (int i = 0; i < enemies.Length; i++)
-                        {
-                        //Get component of enemy and call Take Damage
-
-                        //Just an example!
-                        enemies[i].GetComponent<FrenzyManager>().TakeDamage(explosionDamage);
-
-                        //Add explosion force (if enemy has a rigidbody)
-                        if (enemies[i].GetComponent<Rigidbody>())
-                        enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
-                        }
-                    */
                 }
             }
 
-            //Add a little delay, just to make sure everything works fine
-            Invoke("Delay", 0.05f);
+            Destroy(gameObject);
         }
-    }
-    private void Delay()
-    {
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Don't count collisions with other bullets
-        if (collision.collider.CompareTag("Bullet")) return;
-
-        //Count up collisions
-        collisions++;
-
-        //Explode if bullet hits an enemy directly and explodeOnTouch is activated
-        if (collision.collider.CompareTag("Player") && explodeOnTouch) Explode();
     }
 
     private void Setup()
     {
-        //Create a new Physic material
-        physics_mat = new PhysicMaterial();
-        physics_mat.bounciness = bounciness;
-        physics_mat.frictionCombine = PhysicMaterialCombine.Minimum;
-        physics_mat.bounceCombine = PhysicMaterialCombine.Maximum;
+        // Crear un material físico para el rebote
+        PhysicMaterial physics_mat = new PhysicMaterial
+        {
+            bounciness = bounciness,
+            frictionCombine = PhysicMaterialCombine.Minimum,
+            bounceCombine = PhysicMaterialCombine.Maximum
+        };
 
-        // Asignar color al material visual (renderer)
+        GetComponent<SphereCollider>().material = physics_mat;
+        rb.useGravity = useGravity;
+
         Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
             renderer.material.color = materialColor;
         }
-
-
-        //Assign material to collider
-        GetComponent<SphereCollider>().material = physics_mat;
-
-        //Set gravity
-        rb.useGravity = useGravity;
     }
 
-    /// Just to visualize the explosion range
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Bullet")) return;
+        collisions++;
+
+        if (collision.collider.CompareTag("Player") && explodeOnTouch)
+        {
+            Explode();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

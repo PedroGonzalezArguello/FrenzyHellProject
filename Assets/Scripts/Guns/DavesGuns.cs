@@ -146,18 +146,10 @@ public class GunSystem : MonoBehaviour
 
         if (Physics.SphereCast(fpsCam.transform.position, sphereRadius, direction, out rayEnemyHit, range, whatIsEnemy & layerMask))
         {
-            // Intentar aplicar daño al objeto impactado
             IDamageable damageable = rayEnemyHit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-            }
-
-            ButtonDoor button = rayEnemyHit.collider.GetComponent<ButtonDoor>();
-            if (button != null)
-            {
-                button.Open();
-                SoundManager.PlaySound(SoundType.HITSFX, SoundManager.Instance.GetSFXVolume());
             }
 
             EnemyTurret turret = rayEnemyHit.collider.GetComponent<EnemyTurret>();

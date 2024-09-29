@@ -1944,7 +1944,7 @@ PrefabInstance:
       objectReference: {fileID: 1171745219}
     - target: {fileID: 5661960110495705313, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: startingFrenzy
-      value: 100
+      value: 1e+24
       objectReference: {fileID: 0}
     - target: {fileID: 5661960110495705313, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: frenzy1Increase
@@ -9668,6 +9668,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1116249179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3902059036443534107, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+  m_PrefabInstance: {fileID: 1907438607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120020085
 GameObject:
   m_ObjectHideFlags: 0
@@ -16462,6 +16467,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a15aa001a8d40b34da5a4ecf5d3ed5d7, type: 3}
+--- !u!1 &1611218033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611218034}
+  - component: {fileID: 1611218037}
+  - component: {fileID: 1611218036}
+  - component: {fileID: 1611218035}
+  m_Layer: 12
+  m_Name: Parry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611218034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611218033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.37, z: 0.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1116249179}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611218035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611218033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982d2a23d4561874e898e799e2417c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1611218036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611218033}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.179878, y: 3.5245743, z: 3.7459717}
+  m_Center: {x: 0.042705536, y: -0.60525894, z: 1.5877686}
+--- !u!33 &1611218037
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611218033}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1635898755
 GameObject:
   m_ObjectHideFlags: 0
@@ -17793,7 +17873,10 @@ PrefabInstance:
     - {fileID: 8870420297164342831, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
     - {fileID: 4791669432907311559, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3902059036443534107, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1611218034}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
 --- !u!1 &1937090111
