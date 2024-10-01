@@ -122,7 +122,7 @@ public class EnemyTurret : MonoBehaviour
     
     private System.Collections.IEnumerator TurretOffCoroutine()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0.4f;
         SoundManager.PlaySound(SoundType.FREEZETIME, SoundManager.Instance.GetSFXVolume());
         yield return new WaitForSecondsRealtime(0.2f);
         
@@ -132,9 +132,6 @@ public class EnemyTurret : MonoBehaviour
         this.enabled = false;
 
         yield return new WaitForSeconds(5f);
-        turretOffAnim.Stop();
-
-        this.enabled = true;
     }
 
     void OnDrawGizmosSelected()

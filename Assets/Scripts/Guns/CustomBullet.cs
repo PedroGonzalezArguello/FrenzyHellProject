@@ -49,10 +49,11 @@ public class CustomBullet : MonoBehaviour, IParryable
         SoundManager.PlaySound(SoundType.FREEZETIME, SoundManager.Instance.GetSFXVolume());
 
         // Esperar 1 segundo en tiempo real (sin ser afectado por Time.timeScale)
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.6f);
 
         // Restaurar el tiempo
         Time.timeScale = 1f;
+
 
         // Destruir la bala después del parry
         Destroy(gameObject);
