@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomBullet : MonoBehaviour, IParryable
@@ -23,6 +24,7 @@ public class CustomBullet : MonoBehaviour, IParryable
     private bool hasExploded = false;
 
     public FrenzyManager frenzyManager;
+    [SerializeField] private EnemyTurret enemyTurret; 
 
     private void Start()
     {
@@ -40,6 +42,10 @@ public class CustomBullet : MonoBehaviour, IParryable
         maxLifetime -= Time.deltaTime;
         if (maxLifetime <= 0) Explode();
     }
+    public void SetTurret(EnemyTurret _enemyTurret)
+    {
+        enemyTurret = _enemyTurret;
+    }
 
     // Implementación del parry
     public IEnumerator Parry()
@@ -53,6 +59,8 @@ public class CustomBullet : MonoBehaviour, IParryable
 
         // Restaurar el tiempo
         Time.timeScale = 1f;
+
+        enemyTurret.TurretOffTime();
 
 
         // Destruir la bala después del parry
@@ -84,6 +92,12 @@ public class CustomBullet : MonoBehaviour, IParryable
             Destroy(gameObject);
         }
     }
+    
+   
+
+
+
+
 
     private void Setup()
     {

@@ -14465,13 +14465,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6357721240281010122}
     m_Modifications:
+    - target: {fileID: 163633525666559907, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
+      propertyPath: _sightRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3903570642692623111, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_Name
       value: KamikazeEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.892952
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14479,7 +14483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.691254
+      value: 61.4
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14558,13 +14562,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6357721240281010122}
     m_Modifications:
+    - target: {fileID: 163633525666559907, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
+      propertyPath: _sightRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3903570642692623111, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_Name
       value: KamikazeEnemy (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.0929527
+      value: 1.7000008
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14572,7 +14580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.691284
+      value: 74.400024
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14651,13 +14659,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6357721240281010122}
     m_Modifications:
+    - target: {fileID: 163633525666559907, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
+      propertyPath: _sightRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3903570642692623111, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_Name
       value: KamikazeEnemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.107052
+      value: 10.900005
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14665,7 +14677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.691254
+      value: 61.399994
       objectReference: {fileID: 0}
     - target: {fileID: 4424668427061694909, guid: 4f4961d44f1a93547b6473614e80ffc5, type: 3}
       propertyPath: m_LocalRotation.w

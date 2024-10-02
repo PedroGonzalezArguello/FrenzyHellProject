@@ -15,6 +15,7 @@ public class EnemyTurret : MonoBehaviour
     [SerializeField] private ParticleSystem particleOff1;
 
     public GameObject bulletPrefab;
+    public CustomBullet _customBullet;   
     public Transform shootPoint;
     SoundManager soundManager;
 
@@ -64,7 +65,7 @@ public class EnemyTurret : MonoBehaviour
             Transform target = players[0].transform;
             RotateTowardsTarget(target);
 
-            if (timeSinceLastShot >= timeBetweenShots)
+            if (timeSinceLastShot >= timeBetweenShots && target != null)
             {
                 Shoot(target);
                 timeSinceLastShot = 0f;
@@ -82,9 +83,10 @@ public class EnemyTurret : MonoBehaviour
     void Shoot(Transform target)
     {
         SoundManager.PlaySound(SoundType.TurretAttack, SoundManager.Instance.GetSFXVolume());
-        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+        CustomBullet customBullet = Instantiate(_customBullet, shootPoint.position, Quaternion.identity);
+        customBullet.SetTurret(this);
         Vector3 direction = (target.position - shootPoint.position).normalized;
-        bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+        customBullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
 
         // Apply recoil effect
         Vector3 recoilPosition = transform.position - transform.forward * recoilDistance;
@@ -122,9 +124,10 @@ public class EnemyTurret : MonoBehaviour
     
     private System.Collections.IEnumerator TurretOffCoroutine()
     {
-        Time.timeScale = 0.4f;
+        //Time.timeScale = 0.4f;
         SoundManager.PlaySound(SoundType.FREEZETIME, SoundManager.Instance.GetSFXVolume());
-        yield return new WaitForSecondsRealtime(0.2f);
+       
+        //yield return new WaitForSecondsRealtime(0.2f);
         
 
         Time.timeScale = 1f;
