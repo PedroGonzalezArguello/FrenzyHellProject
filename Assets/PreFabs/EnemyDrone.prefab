@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 4385281501316143358}
   - component: {fileID: 3506489538148057219}
   - component: {fileID: 8837426921558478412}
-  - component: {fileID: 6251079467622395139}
   - component: {fileID: 1952038339547658153}
   m_Layer: 10
   m_Name: EnemyDrone
@@ -257,22 +256,6 @@ CapsuleCollider:
   m_Height: 10.859219
   m_Direction: 0
   m_Center: {x: -0.039307278, y: 0.3346401, z: 0.027545294}
---- !u!111 &6251079467622395139
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4449101297073425722}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ce34306573f72b147bc411859d32a4a8, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: ce34306573f72b147bc411859d32a4a8, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1952038339547658153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +294,6 @@ MonoBehaviour:
   _pointsOnKill: 15
   _pointsOnDeath: 15
   shootPoint: {fileID: 2414512636879846101}
-  Anim: {fileID: 6251079467622395139}
   animator: {fileID: 7540893702993531069}
   timeBetweenAttacks: 0.2
   upwardForce: 0
