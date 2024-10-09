@@ -15,7 +15,6 @@ public class BossHead : MonoBehaviour
 
     private float patrolTimer;
     private bool rotateClockwise = true;
-    private bool isDetectingPlayer = false;
     [SerializeField] private float patrolTime = 3f;
 
     private float timeSinceLastDamage = 0f;

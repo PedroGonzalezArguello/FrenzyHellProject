@@ -493,8 +493,6 @@ public class DavesPM : MonoBehaviour
         canJump = true;
     }
 
-    private bool enableMovementOnNextTouch;
-
     public void JumpToPosition(Vector3 targetPosition)
     {
         activeGrapple = true;
@@ -508,7 +506,6 @@ public class DavesPM : MonoBehaviour
     private Vector3 velocityToSet;
     private void SetVelocity()
     {
-        enableMovementOnNextTouch = true;
         rb.velocity = velocityToSet;
     }
 

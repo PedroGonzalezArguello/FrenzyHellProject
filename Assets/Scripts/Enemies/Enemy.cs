@@ -26,6 +26,8 @@ public abstract class Enemy : Entity
     protected bool _hasExploded;
     [SerializeField]protected int _pointsOnDeath;
 
+
+
     public int PointsOnDeath
     {
         get { return _pointsOnDeath; }
@@ -42,6 +44,7 @@ public abstract class Enemy : Entity
         PointsManager.Instance.AddPoints(_pointsOnDeath);
     }
 
+    //Esto solo explota
     protected virtual void Explode()
     {
         if (_explosionPrefab != null)
@@ -53,15 +56,25 @@ public abstract class Enemy : Entity
         Destroy(gameObject);
     }
 
-    protected virtual void Explode(float timer)
+    //Esto explota con timer
+    protected virtual IEnumerator Explode(float timer)
     {
-        if (_explosionPrefab != null)
+        while (timer > 0)
         {
-            SoundManager.PlaySound(SoundType.DRONEXPLODE, SoundManager.Instance.GetSFXVolume());
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            timer -= Time.deltaTime;
+            yield return null;
         }
+        if (timer < 0)
+        {
+            if (_explosionPrefab != null)
+            {
+                SoundManager.PlaySound(SoundType.DRONEXPLODE, SoundManager.Instance.GetSFXVolume());
+                Debug.Log("EXPLODE");
+                Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 
-        Destroy(gameObject, timer);
+            }
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void Awake()
