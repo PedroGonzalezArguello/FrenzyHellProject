@@ -763,6 +763,61 @@ MonoBehaviour:
     sounds:
     - {fileID: 8300000, guid: eb54f80e48471aa48a08c88c32aa2e37, type: 3}
     - {fileID: 8300000, guid: a6f8c08e60016224a8cdde8b0a7e6fb3, type: 3}
+--- !u!1 &1966747361729628124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5641783039581549186}
+  - component: {fileID: 149455294025489163}
+  m_Layer: 0
+  m_Name: TierManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5641783039581549186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966747361729628124}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.933014, y: 5.0760593, z: 2.2241879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4254124582845561010}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149455294025489163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966747361729628124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e462feed68d35d04daab611268709b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tierText: {fileID: 0}
+  _tiers:
+  - points: 15
+    name: Cancer
+  - points: 30
+    name: Booo!!
+  - points: 45
+    name: Aura winner
+  - points: 60
+    name: SuperFrenzy
+  _actualTier: 0
 --- !u!1 &2340574797028947807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2086,7 @@ Transform:
   - {fileID: 2522516845818049214}
   - {fileID: 3700163381407956225}
   - {fileID: 8894120531153400803}
+  - {fileID: 5641783039581549186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9049839537463104631
