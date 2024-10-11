@@ -43,7 +43,6 @@ public class ProjectileMove : MonoBehaviour
             var hitVFX = Instantiate(hitPrefab, pos, rot);
         }
 
-        Debug.Log("COLISION!");
         Destroy(gameObject);
     }
 }

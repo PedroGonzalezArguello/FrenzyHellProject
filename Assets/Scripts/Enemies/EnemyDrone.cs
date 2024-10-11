@@ -183,7 +183,6 @@ public class EnemyDrone : Enemy
 
     protected override void Death()
     {
-        Debug.Log("ENTRO A DEATH");
         base.Death();
         animator.SetTrigger("Death");
         SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
