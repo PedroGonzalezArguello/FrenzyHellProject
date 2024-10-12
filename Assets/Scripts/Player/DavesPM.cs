@@ -45,6 +45,10 @@ public class DavesPM : MonoBehaviour
     private bool canJump = true; // Bandera para permitir saltar
 
 
+    [Header("GroundSlam")]
+    [SerializeField] private float _groundSlamSpeed;
+    private GroundSlam _groundSlam;
+
     [Header("Dash")]
     public float dashSpeed;
     public float dashSpeedChangeFactor;
@@ -59,6 +63,7 @@ public class DavesPM : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    private KeyCode _slamKey = KeyCode.LeftControl;
     //public KeyCode sprintKey = KeyCode.LeftShift;
     //public KeyCode crouchKey = KeyCode.LeftControl;
 
@@ -127,6 +132,7 @@ public class DavesPM : MonoBehaviour
     public bool wallrunning;
     public bool freeze;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -135,6 +141,7 @@ public class DavesPM : MonoBehaviour
         readyToJump = true;
         jumpsLeft = maxJumps; // Inicializa el contador de saltos
         cam.DoFov(95);
+        _groundSlam = new GroundSlam(_groundSlamSpeed, this);
 
         //startYScale = transform.localScale.y;
 
@@ -170,6 +177,9 @@ public class DavesPM : MonoBehaviour
         {
             movementAnim.SetBool("OnAir", false);
             movementAnim.SetBool("OnGround", false);
+            if (Input.GetKeyDown(_slamKey)){
+                StartCoroutine(_groundSlam.DoGroundSlam());
+            }
         }
 
 
@@ -493,8 +503,6 @@ public class DavesPM : MonoBehaviour
         canJump = true;
     }
 
-    private bool enableMovementOnNextTouch;
-
     public void JumpToPosition(Vector3 targetPosition)
     {
         activeGrapple = true;
@@ -508,7 +516,6 @@ public class DavesPM : MonoBehaviour
     private Vector3 velocityToSet;
     private void SetVelocity()
     {
-        enableMovementOnNextTouch = true;
         rb.velocity = velocityToSet;
     }
 

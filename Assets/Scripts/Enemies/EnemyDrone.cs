@@ -12,7 +12,6 @@ public class EnemyDrone : Enemy
 
     
     //Animation
-    public Animation Anim;
     public Animator animator;
 
     // Attacking
@@ -36,12 +35,24 @@ public class EnemyDrone : Enemy
     // Death Animation
     public float fowardAnimForce;
     public float downAnimForce;
+    private bool _isFalling = false;
+    private Vector3 _deathDir;
 
     //Eventos
     public delegate void EnemigoEliminadoHandler(EnemyDrone enemydrone);
+
     public static event EnemigoEliminadoHandler EnemigoEliminado;
 
+    public delegate void MovementDelegate();
 
+    private MovementDelegate _myMovement;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _myMovement = NormalMovement;
+        _deathDir = Vector3.zero;
+    }
     protected override void Start()
     {
         base.Start();
@@ -50,29 +61,31 @@ public class EnemyDrone : Enemy
 
     void Update()
     {
-        if (isAlive)
-        {
-            _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
-            _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
+        _myMovement();
+    }
 
-            if (!_playerInAttackRange && !_playerInSightRange)
+    public void NormalMovement()
+    {
+        _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
+        _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
+
+        if (!_playerInAttackRange && !_playerInSightRange)
+        {
+            if (!isPatrolling) StartCoroutine(Patrol());
+        }
+        if (_playerInSightRange && !_playerInAttackRange)
+        {
+            ChasePlayer();
+            isPatrolling = false;
+            transform.LookAt(_player.position);
+        }
+        if (_playerInAttackRange && _playerInSightRange)
+        {
+            if (!alreadyAttacked)
             {
-                if (!isPatrolling) StartCoroutine(Patrol());
+                StartCoroutine(PrepareAndAttackPlayer());
             }
-            if (_playerInSightRange && !_playerInAttackRange)
-            {
-                ChasePlayer();
-                isPatrolling = false;
-                transform.LookAt(_player.position);
-            }
-            if (_playerInAttackRange && _playerInSightRange)
-            {
-                if (!alreadyAttacked)
-                {
-                    StartCoroutine(PrepareAndAttackPlayer());
-                }
-                transform.LookAt(_player.position);
-            }
+            transform.LookAt(_player.position);
         }
     }
 
@@ -118,27 +131,30 @@ public class EnemyDrone : Enemy
 
     private IEnumerator PrepareAndAttackPlayer()
     {
-        alreadyAttacked = true;
-        
+        if (!_isFalling)
+        {
+            alreadyAttacked = true;
 
-        // Reproducir sonido de preparación
-        SoundManager.PlaySound(SoundType.DRONECHARGE, SoundManager.Instance.GetSFXVolume());
-        _particles.Play();
 
-        // Esperar un momento antes de atacar
-        yield return new WaitForSeconds(.8f); // Ajusta el tiempo según sea necesario
-        animator.SetTrigger("Attack");
-        // Reproducir sonido de ataque
-        SoundManager.PlaySound(SoundType.DRONEATTACK, SoundManager.Instance.GetSFXVolume());
+            // Reproducir sonido de preparación
+            SoundManager.PlaySound(SoundType.DRONECHARGE, SoundManager.Instance.GetSFXVolume());
+            _particles.Play();
 
-        // Realizar el ataque
-        Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * fowardForce, ForceMode.Impulse);
-        rb.AddForce(transform.up * upwardForce, ForceMode.Impulse);
+            // Esperar un momento antes de atacar
+            yield return new WaitForSeconds(.8f); // Ajusta el tiempo según sea necesario
+            animator.SetTrigger("Attack");
+            // Reproducir sonido de ataque
+            SoundManager.PlaySound(SoundType.DRONEATTACK, SoundManager.Instance.GetSFXVolume());
 
-        // Esperar el tiempo entre ataques antes de permitir otro ataque
-        yield return new WaitForSeconds(timeBetweenAttacks);
-        ResetAttack();
+            // Realizar el ataque
+            Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * fowardForce, ForceMode.Impulse);
+            rb.AddForce(transform.up * upwardForce, ForceMode.Impulse);
+
+            // Esperar el tiempo entre ataques antes de permitir otro ataque
+            yield return new WaitForSeconds(timeBetweenAttacks);
+            ResetAttack();
+        }
     }
 
     public void ResetAttack()
@@ -152,19 +168,35 @@ public class EnemyDrone : Enemy
         base.TakeDamage(dmg);
     }
 
+    public void DeathMovement()
+    {
+        if (!_isFalling)
+        {
+        Vector3 randomXZ = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+        randomXZ.Normalize();
+
+        _deathDir = new Vector3(randomXZ.x, -1f, randomXZ.z); 
+        _isFalling = true;
+        }
+        transform.position += _deathDir * _movementSpeed * Time.deltaTime;
+    }   
+
     protected override void Death()
     {
-            isAlive = false;
-            _frenzyManager.AddPoints(_pointsOnKill);
-        GameObject explosionInstance = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        base.Death();
+        animator.SetTrigger("Death");
+        SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
+        isAlive = false;
+        _frenzyManager.AddPoints(_pointsOnKill);
+        _myMovement = DeathMovement;
+        StartCoroutine(Explode(1f));
 
-        //PlayDeathAnimation();
-
-            if (EnemigoEliminado != null)
-            {
-                EnemigoEliminado(this);
-            }
+        /*
+        if (EnemigoEliminado != null)
+        {
+            EnemigoEliminado(this);
+        }
+        */
     }
 
 
@@ -180,18 +212,12 @@ public class EnemyDrone : Enemy
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(patrolCenter, new Vector3(patrolXDistance * 2, 1, patrolZDistance * 2)); // Dibujar el área de patrullaje en forma de cubo
     }
-    private void PlayDeathAnimation()
-    {
-        fowardAnimForce = 6;
-        Anim.Play();
-        _rb.useGravity = true;
-        _rb.velocity = Vector3.zero; // Detener el movimiento actual
-        _rb.AddForce(transform.forward * fowardAnimForce + Vector3.down * downAnimForce, ForceMode.Impulse);
-        SoundManager.PlaySound(SoundType.DRONEDEATH, SoundManager.Instance.GetSFXVolume());
-        Explode(2f);
-    }
+
     void OnCollisionEnter(Collision collision)
     {
+        if (_isFalling) {
+            Explode();
+        }
         if (collision.gameObject.GetComponent<DavesPM>() != null)
         {
             Death();

@@ -439,34 +439,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb316e0684d50f4499b12b3b80d3944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3902059036443534107, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 128
-  health: 45
-  frenzyManager: {fileID: 8059264719196215043, guid: 800ae43f4c68ac34fb8b074b1c08bd7a, type: 3}
-  rb: {fileID: 7931418191891264037}
-  soundManager: {fileID: 0}
-  particles: {fileID: 5786787570944118249, guid: d3da9eae5b1e90e48ab7578383e79484, type: 3}
+  _health: 0
   isAlive: 0
+  _popUp: X
+  _player: {fileID: 0}
+  _rb: {fileID: 0}
+  _frenzyManager: {fileID: 0}
+  _soundManager: {fileID: 0}
+  _particles: {fileID: 0}
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  _explosionPrefab: {fileID: 0}
+  _movementSpeed: 0
+  _playerInSightRange: 0
+  _playerInAttackRange: 0
+  _sightRange: 0
+  _attackRange: 0
+  _pointsOnKill: 15
+  _pointsOnDeath: 15
   Anim: {fileID: 1162154534730635075}
-  movementSpeed: 30
-  sightRange: 350
-  attackRange: 0
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  pointsOnKill: 15
   spawnForce: 0
   fowardAnimForce: 0
   downAnimForce: 0
-  isDestroyable: 0
-  explosion: {fileID: 1000013462590818, guid: 11479eefd4125644f9301b839b2569b5, type: 3}
   explosionDamage: 15
   explosionRange: 3
 --- !u!54 &7931418191891264037

@@ -133,6 +133,7 @@ MonoBehaviour:
   maxJumps: 1
   jumpsLeft: 0
   jumpDelay: 0.2
+  _groundSlamSpeed: 90
   dashSpeed: 70
   dashSpeedChangeFactor: 50
   maxYSpeed: 30
