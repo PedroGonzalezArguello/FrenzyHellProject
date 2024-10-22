@@ -1972,6 +1972,18 @@ PrefabInstance:
       propertyPath: frenzy5Increase
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6225349271754830195, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 472844612}
+    - target: {fileID: 6225349271754830195, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1410731965}
+    - target: {fileID: 6225349271754830195, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: playerlook
+      value: 
+      objectReference: {fileID: 286587658}
     - target: {fileID: 6826005157992236375, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: m_Name
       value: Managers
