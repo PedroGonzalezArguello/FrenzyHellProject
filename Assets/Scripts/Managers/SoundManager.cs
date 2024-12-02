@@ -36,6 +36,7 @@ public enum SoundType
     HURTAHSFX,
     OPENDOORSFX,
     GRAPPLEON,
+    FREEZETIME,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]

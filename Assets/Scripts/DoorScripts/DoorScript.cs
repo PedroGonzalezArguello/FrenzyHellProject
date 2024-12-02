@@ -3,22 +3,20 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour
 {
-    public float moveDistance;
+    public Transform targetTransform;
     public float speed;
     public float waitTime;
     private Vector3 initialPosition;
-    private Vector3 targetPosition;
     private bool isMoving = false;
 
     void Start()
     {
         initialPosition = transform.position;
-        targetPosition = initialPosition + new Vector3(moveDistance, 0, 0);
     }
 
     public void OpenDoor()
     {
-        if (!isMoving)
+        if (!isMoving && targetTransform != null) 
         {
             SoundManager.PlaySound(SoundType.OPENDOORSFX, SoundManager.Instance.GetSFXVolume());
             StartCoroutine(OpenAndCloseDoor());
@@ -27,10 +25,10 @@ public class DoorScript : MonoBehaviour
 
     private IEnumerator OpenAndCloseDoor()
     {
-        yield return MoveDoor(targetPosition); // Move to open position
-        yield return new WaitForSeconds(waitTime); // Wait for the specified time
+        yield return MoveDoor(targetTransform.position); // Mover hacia la posición del transform objetivo
+        yield return new WaitForSeconds(waitTime);
         SoundManager.PlaySound(SoundType.OPENDOORSFX, SoundManager.Instance.GetSFXVolume());
-        yield return MoveDoor(initialPosition); // Move back to initial position
+        yield return MoveDoor(initialPosition); // Volver a la posición inicial
     }
 
     private IEnumerator MoveDoor(Vector3 target)
@@ -43,7 +41,7 @@ public class DoorScript : MonoBehaviour
             yield return null;
         }
 
-        transform.position = target; // Ensure the final position is exact
+        transform.position = target; 
         isMoving = false;
     }
 }

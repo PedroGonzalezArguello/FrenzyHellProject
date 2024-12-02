@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonDoor : MonoBehaviour
+public class ButtonDoor : MonoBehaviour, IDamageable
 {
     private DoorScript door;
     private PalancaScript palanca;
@@ -14,7 +14,7 @@ public class ButtonDoor : MonoBehaviour
         palanca = GetComponentInChildren<PalancaScript>();
     }
 
-    public void Open()
+    public void TakeDamage(int doors)
     {
         door.OpenDoor();
         palanca.DoAnim();

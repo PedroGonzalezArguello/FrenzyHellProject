@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Clase enemy: existe solo para que todos los enemigos hereden de esto
 
-public abstract class Enemy : Entity
+public abstract class Enemy : Entity, IDamageable
 {
     [Header("Enemy - Referencias")]
     [SerializeField] protected Transform _player;
