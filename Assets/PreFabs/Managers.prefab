@@ -810,7 +810,7 @@ MonoBehaviour:
   _tierText: {fileID: 0}
   _tiers:
   - points: 15
-    name: Cancer
+    name: Meh
   - points: 30
     name: Booo!!
   - points: 45

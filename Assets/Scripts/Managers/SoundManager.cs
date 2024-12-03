@@ -74,7 +74,12 @@ public class SoundManager : MonoBehaviour
         // Cargar el volumen guardado al iniciar
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        sfxVolume = SFXDONTDESTROY.instance.GetSFXValue;
+        if(SFXDONTDESTROY.instance != null)
+        {
+            sfxVolume = SFXDONTDESTROY.instance.GetSFXValue;
+        }
+        
+
     }
 
     public static void PlaySound(SoundType sound, float volume = -1f)

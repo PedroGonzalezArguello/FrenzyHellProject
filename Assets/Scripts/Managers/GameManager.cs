@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         gun.pauseActive = false;
         playerlook.pauseActive = false;
         frenzyManager.enabled = true;
-        SceneManager.LoadScene("Level3");
+        SceneManager.LoadScene("Level4");
     }
     public void Level3Button()
     {

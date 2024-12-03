@@ -38,8 +38,15 @@ public class PointsManager : MonoBehaviour
         {
             OnPointsCooldown();
         }
-        _slider.value = _actualTimer / _maxTimer;
-        _pointsText.text = "Total Points: " + _totalPoints.ToString();
+        if(_slider != null)
+        {
+            _slider.value = _actualTimer / _maxTimer;
+        }
+        
+        if(_pointsText != null)
+        {
+            _pointsText.text = "Total Points: " + _totalPoints.ToString();
+        }
     }
 
     public void AddPoints(int points)
