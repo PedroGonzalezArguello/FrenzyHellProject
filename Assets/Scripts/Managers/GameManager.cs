@@ -166,6 +166,6 @@ public class GameManager : MonoBehaviour
         gun.pauseActive = false;
         playerlook.pauseActive = false;
         frenzyManager.enabled = true;
-        SceneManager.LoadScene("Endless");
+        SceneManager.LoadScene("MainMenu");
     }
 }
