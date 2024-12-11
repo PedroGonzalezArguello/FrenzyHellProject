@@ -77097,6 +77097,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1088088880045547586, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -399.05994
+      objectReference: {fileID: 0}
     - target: {fileID: 1230734204430234877, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -77253,6 +77257,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3457713568404244838, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4254124582845561010, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 175.02728
@@ -77368,6 +77376,10 @@ PrefabInstance:
     - target: {fileID: 7542285224106839950, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Level4Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088955127598707789, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 8884541049087254970, guid: 70cd81654ff2dba4eb383ac06c155bb2, type: 3}
       propertyPath: pl
