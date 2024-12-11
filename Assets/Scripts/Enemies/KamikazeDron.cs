@@ -75,7 +75,7 @@ public class KamikazeDrone : Enemy
         foreach (Collider collider in colliders)
         {
             // Verifica si el objeto detectado es el jugador
-            if (collider.GetComponent<DavesPM>() != null)
+            if (collider.GetComponent<DavesPM>() != null || collider.CompareTag("Player"))
             {
                 _frenzyManager.TakeDamage(explosionDamage);
             }

@@ -509,7 +509,7 @@ MonoBehaviour:
   fowardAnimForce: 0
   downAnimForce: 0
   explosionDamage: 15
-  explosionRange: 3
+  explosionRange: 5
 --- !u!54 &7931418191891264037
 Rigidbody:
   m_ObjectHideFlags: 0
