@@ -10,7 +10,12 @@ public class EnemyDrone : Enemy
     public Transform shootPoint;
     //public NavMeshAgent agent;
 
-    
+    //Obstacle Avoidance
+
+    public float obstacleRange = 1.5f;
+    [SerializeField] public LayerMask _obstacleMask;
+
+
     //Animation
     public Animator animator;
 
@@ -69,17 +74,17 @@ public class EnemyDrone : Enemy
         _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
         _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
 
-        if (!_playerInAttackRange && !_playerInSightRange)
+        if (!_playerInAttackRange && !_playerInSightRange && !LineOfSight(transform.position, _player.position))
         {
             if (!isPatrolling) StartCoroutine(Patrol());
         }
-        if (_playerInSightRange && !_playerInAttackRange)
+        if (_playerInSightRange && !_playerInAttackRange && LineOfSight(transform.position, _player.position))
         {
             ChasePlayer();
             isPatrolling = false;
             transform.LookAt(_player.position);
         }
-        if (_playerInAttackRange && _playerInSightRange)
+        if (_playerInAttackRange && _playerInSightRange && LineOfSight(transform.position, _player.position))
         {
             if (!alreadyAttacked)
             {
@@ -198,10 +203,33 @@ public class EnemyDrone : Enemy
         }
         */
     }
+    public Vector3 ObstacleAvoidance()
+    {
+        var obstacles = Physics.OverlapSphere(transform.position, obstacleRange, _obstacleMask);
+        Debug.Log(obstacles.Length);
 
+        if (obstacles.Length <= 0) return Vector3.zero;
+
+        var obstacleDir = Vector3.zero;
+
+        foreach (var obstacle in obstacles)
+        {
+            Debug.Log(obstacle.gameObject.name);
+            obstacleDir += transform.position - obstacle.transform.position;
+        }
+
+        obstacleDir.y = 0f;
+
+        return obstacleDir;
+    }
 
     
 
+    public static bool LineOfSight(Vector3 from, Vector3 to)
+    {
+        var dir = to - from;
+        return !Physics.Raycast(from, dir, dir.magnitude, LayerMask.GetMask("Wall"));
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -211,6 +239,8 @@ public class EnemyDrone : Enemy
         Gizmos.DrawWireSphere(transform.position, _sightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(patrolCenter, new Vector3(patrolXDistance * 2, 1, patrolZDistance * 2)); // Dibujar el área de patrullaje en forma de cubo
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, obstacleRange);
     }
 
     void OnCollisionEnter(Collision collision)
