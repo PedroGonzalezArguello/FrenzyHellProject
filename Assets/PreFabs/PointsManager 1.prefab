@@ -45,3 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalPoints: 0
+  _pointsText: {fileID: 0}
+  _slider: {fileID: 0}
+  _maxMultiplier: 3
+  _pointsInCooldown: 0
+  timeModifier: 2

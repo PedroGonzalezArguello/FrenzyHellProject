@@ -24,22 +24,22 @@ public class FrenzyManager : MonoBehaviour
     public float startingFrenzy;
     public float frenzy1Points;
     public float frenzy1Increase;
-    public bool frenzy1Applied;
     public float frenzy2Points;
     public float frenzy2Increase;
-    public bool frenzy2Applied;
     public float frenzy3Points;
     public float frenzy3Increase;
-    public bool frenzy3Applied;
     public float frenzy4Points;
     public float frenzy4Increase;
-    public bool frenzy4Applied;
     public float frenzy5Points;
     public float frenzy5Increase;
-    public bool frenzy5Applied;
-    public bool safeGuard;
     public float safeGuardTime;
     public Color frenzyBarOG;
+    public bool frenzy2Applied;
+    public bool frenzy1Applied;
+    public bool frenzy3Applied;
+    public bool frenzy4Applied;
+    public bool safeGuard;
+    public bool frenzy5Applied;
 
     public static FrenzyManager Instance {  get { return instance; } }
 

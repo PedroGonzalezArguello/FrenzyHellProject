@@ -16,6 +16,7 @@ public class PointsManager : MonoBehaviour
     private int _multiplier = 1;
     private float _maxTimer = 3f;
     private float _actualTimer = 0f;
+    public float timeModifier;
 
     public delegate void EventPointsCooldown();
     public static event EventPointsCooldown OnPointsCooldown;
@@ -33,7 +34,7 @@ public class PointsManager : MonoBehaviour
 
     private void Update()
     {
-        _actualTimer -= Time.deltaTime;
+        _actualTimer -= Time.deltaTime / timeModifier;
         if(_actualTimer <= 0f)
         {
             OnPointsCooldown();

@@ -30,6 +30,7 @@ public class TierManager : MonoBehaviour
         if (_tierText != null)
         {
             _tierText.gameObject.SetActive(false);
+            BuffManager.Instance.RemoveBuff();
         }   
     }
 
@@ -38,6 +39,7 @@ public class TierManager : MonoBehaviour
         if (PointsManager.Instance.PointsInCooldown > _tiers[_actualTier].points && _actualTier < _tiers.Length-1)
         {
             _actualTier++;
+            BuffManager.Instance.Buff();
         }
     }
 }
