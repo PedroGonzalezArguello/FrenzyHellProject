@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class BuffManager : MonoBehaviour
@@ -8,19 +10,30 @@ public class BuffManager : MonoBehaviour
 
     public static BuffManager Instance;
 
+    private float[] tierSpeeds = { 100f, 300f, 500f, 1000f }; // C, B, A, Super Frenzy
+
+    [Header("VELOCIDAD EXTRA")]
+    public float currentSpeedBuff; // Visible en el Inspector para depuración
+
     private void Start()
     {
         Instance = this;
     }
-    public void Buff()
+    public void Buff(int tierIndex)
     {
         Player.extraMoveSpeed += 100f;
+
+        if (tierIndex >= 0 && tierIndex < tierSpeeds.Length)
+        {
+            Player.extraMoveSpeed = tierSpeeds[tierIndex];
+            Debug.Log($"Buff aplicado: Tier {tierIndex}, Velocidad extra: {tierSpeeds[tierIndex]}");
+            currentSpeedBuff = tierSpeeds[tierIndex]; // Actualizar la variable de depuración
+        }
     }
 
     public void RemoveBuff()
     {
         Player.extraMoveSpeed = 0;
+        currentSpeedBuff = 0;
     }
-
-
 }

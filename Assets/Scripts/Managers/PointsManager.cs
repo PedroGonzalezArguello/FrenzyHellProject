@@ -35,16 +35,17 @@ public class PointsManager : MonoBehaviour
     private void Update()
     {
         _actualTimer -= Time.deltaTime / timeModifier;
-        if(_actualTimer <= 0f)
+        if (_actualTimer <= 0f)
         {
-            OnPointsCooldown();
+            OnPointsCooldown?.Invoke();
         }
-        if(_slider != null)
+
+        if (_slider != null)
         {
             _slider.value = _actualTimer / _maxTimer;
         }
-        
-        if(_pointsText != null)
+
+        if (_pointsText != null)
         {
             _pointsText.text = "Total Points: " + _totalPoints.ToString();
         }
@@ -53,11 +54,18 @@ public class PointsManager : MonoBehaviour
     public void AddPoints(int points)
     {
         if (_actualTimer > 0 && _multiplier < _maxMultiplier)
-        {     
+        {
             _multiplier++;
         }
         _actualTimer = _maxTimer;
         _pointsInCooldown += points * _multiplier;
+
+        // Notificar al TierManager para revisar el Tier
+        TierManager tierManager = FindObjectOfType<TierManager>();
+        if (tierManager != null)
+        {
+            tierManager.CheckActualTier();
+        }
     }
 
     private void ResetActualPoints()
