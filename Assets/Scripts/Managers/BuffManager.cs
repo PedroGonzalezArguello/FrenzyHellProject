@@ -10,7 +10,7 @@ public class BuffManager : MonoBehaviour
 
     public static BuffManager Instance;
 
-    private float[] tierSpeeds = { 100f, 300f, 500f, 1000f }; // C, B, A, Super Frenzy
+    private float[] tierSpeeds = { 50f, 100f, 200f, 300f }; // C, B, A, Super Frenzy
 
     [Header("VELOCIDAD EXTRA")]
     public float currentSpeedBuff; // Visible en el Inspector para depuración
