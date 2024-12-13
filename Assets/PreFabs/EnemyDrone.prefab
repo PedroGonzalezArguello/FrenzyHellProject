@@ -289,7 +289,7 @@ MonoBehaviour:
   _movementSpeed: 28
   _playerInSightRange: 0
   _playerInAttackRange: 0
-  _sightRange: 200
+  _sightRange: 100
   _attackRange: 70
   _pointsOnKill: 15
   _pointsOnDeath: 15
@@ -297,7 +297,7 @@ MonoBehaviour:
   obstacleRange: 5
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   animator: {fileID: 7540893702993531069}
   timeBetweenAttacks: 0.2
   upwardForce: 0
