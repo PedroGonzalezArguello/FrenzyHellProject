@@ -64,7 +64,7 @@ public class DavesPM : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
-    private KeyCode _slamKey = KeyCode.LeftControl;
+    private KeyCode _slamKey = KeyCode.C;
     //public KeyCode sprintKey = KeyCode.LeftShift;
     //public KeyCode crouchKey = KeyCode.LeftControl;
 

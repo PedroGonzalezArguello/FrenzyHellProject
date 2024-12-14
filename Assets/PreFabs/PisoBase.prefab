@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c1adaea94a833ea4e904b3d6dd16a61b, type: 2}
     - target: {fileID: 919132149155446097, guid: 0a2701ae8e217fa40bb60db5d537de27, type: 3}
       propertyPath: m_Name
-      value: piso_relieve Variant
+      value: PisoBase
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a2701ae8e217fa40bb60db5d537de27, type: 3}
       propertyPath: m_Layer
@@ -108,5 +108,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 100, y: 143.49562, z: 99.99998}
-  m_Center: {x: 0, y: 21.747824, z: 0}
+  m_Size: {x: 100, y: 143.49562, z: 101.60515}
+  m_Center: {x: 0, y: 21.747824, z: -0.00003629771}

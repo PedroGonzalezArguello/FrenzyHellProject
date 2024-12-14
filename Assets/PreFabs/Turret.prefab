@@ -4922,7 +4922,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   rotationSpeed: 12
-  bulletSpeed: 180
+  bulletSpeed: 120
   recoilDistance: 0.4
   recoilReturnSpeed: 1.2
   patrolTime: 3

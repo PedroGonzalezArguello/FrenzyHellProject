@@ -14,7 +14,8 @@ public class Grappling : MonoBehaviour
     public LineRenderer lr;
     SoundManager soundManager;
     public Image Crossair;
-    public Image _Crossair;
+    public Image _pressE;
+    public Animation _pressEanim;
 
     [Header("Camera Effects")]
     public PlayerLook camEffects;
@@ -48,15 +49,18 @@ public class Grappling : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable) && !grappling)
         {
-            _Crossair.enabled = true;
-            Crossair.color = Color.red;
+            _pressE.enabled = true;
+            _pressE.color = Color.white;
+            _pressEanim.Play();
+            //Crossair.color = Color.red;
             SoundManager.PlayLoopingSound(SoundType.GRAPPLEON, SoundManager.Instance.GetSFXVolume());
 
         }
         else
         {
-            _Crossair.enabled = false;
-            Crossair.color = Color.blue;
+            _pressE.enabled = false;
+            _pressEanim.Stop();
+            Crossair.color = Color.white;
             SoundManager.StopLoopingSound(SoundType.GRAPPLEON);
         }
 
@@ -79,7 +83,7 @@ public class Grappling : MonoBehaviour
 
     private void StartGrapple()
     {
-        _Crossair.enabled = false;
+        _pressE.enabled = false;
         Crossair.color = Color.blue;
 
         if (grapplingCdTimer > 0) return;
