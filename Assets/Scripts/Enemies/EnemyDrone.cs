@@ -10,12 +10,6 @@ public class EnemyDrone : Enemy
     public Transform shootPoint;
     //public NavMeshAgent agent;
 
-    //Obstacle Avoidance
-
-    public float obstacleRange = 1.5f;
-    [SerializeField] public LayerMask _obstacleMask;
-
-
     //Animation
     public Animator animator;
 
@@ -202,33 +196,6 @@ public class EnemyDrone : Enemy
             EnemigoEliminado(this);
         }
         */
-    }
-    public Vector3 ObstacleAvoidance()
-    {
-        var obstacles = Physics.OverlapSphere(transform.position, obstacleRange, _obstacleMask);
-        Debug.Log(obstacles.Length);
-
-        if (obstacles.Length <= 0) return Vector3.zero;
-
-        var obstacleDir = Vector3.zero;
-
-        foreach (var obstacle in obstacles)
-        {
-            Debug.Log(obstacle.gameObject.name);
-            obstacleDir += transform.position - obstacle.transform.position;
-        }
-
-        obstacleDir.y = 0f;
-
-        return obstacleDir;
-    }
-
-    
-
-    public static bool LineOfSight(Vector3 from, Vector3 to)
-    {
-        var dir = to - from;
-        return !Physics.Raycast(from, dir, dir.magnitude, LayerMask.GetMask("Wall"));
     }
 
     private void OnDrawGizmosSelected()
