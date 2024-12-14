@@ -50399,7 +50399,7 @@ GameObject:
   - component: {fileID: 1195740166}
   - component: {fileID: 1195740169}
   - component: {fileID: 1195740168}
-  - component: {fileID: 1195740167}
+  - component: {fileID: 1195740170}
   m_Layer: 5
   m_Name: Press E
   m_TagString: Untagged
@@ -50426,27 +50426,6 @@ RectTransform:
   m_AnchoredPosition: {x: -439.55, y: 197.6}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1195740167
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195740165}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9c40b03bf6ac4146b7582ecc2bcbe4d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1195740168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50485,6 +50464,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195740165}
   m_CullTransparentMesh: 1
+--- !u!111 &1195740170
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195740165}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8517fbe5295db3c48a550614c5281b91, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8517fbe5295db3c48a550614c5281b91, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &1197458147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3330904082212654482, guid: 52e2eb8602c3ba744b3bb7f3ddb09191, type: 3}
@@ -79842,6 +79837,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1179741979}
     - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+      propertyPath: _pressE
+      value: 
+      objectReference: {fileID: 1195740168}
+    - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
       propertyPath: Crossair
       value: 
       objectReference: {fileID: 478230026}
@@ -79857,6 +79856,10 @@ PrefabInstance:
       propertyPath: camEffects
       value: 
       objectReference: {fileID: 286587658}
+    - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+      propertyPath: _pressEanim
+      value: 
+      objectReference: {fileID: 1195740170}
     - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
       propertyPath: grapplingCd
       value: 0.5

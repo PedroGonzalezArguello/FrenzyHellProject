@@ -8550,6 +8550,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1051700511}
     - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+      propertyPath: _pressE
+      value: 
+      objectReference: {fileID: 396347367}
+    - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
       propertyPath: Crossair
       value: 
       objectReference: {fileID: 1798345787}
@@ -8561,6 +8565,10 @@ PrefabInstance:
       propertyPath: camEffects
       value: 
       objectReference: {fileID: 490659102}
+    - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
+      propertyPath: _pressEanim
+      value: 
+      objectReference: {fileID: 396347369}
     - target: {fileID: 8961324995474387333, guid: 0b3a1fc5258bc5347afb3a098e1992d5, type: 3}
       propertyPath: grapplingCd
       value: 0.3
@@ -15612,7 +15620,7 @@ GameObject:
   - component: {fileID: 396347365}
   - component: {fileID: 396347368}
   - component: {fileID: 396347367}
-  - component: {fileID: 396347366}
+  - component: {fileID: 396347369}
   m_Layer: 5
   m_Name: Press E
   m_TagString: Untagged
@@ -15639,27 +15647,6 @@ RectTransform:
   m_AnchoredPosition: {x: -439.55, y: 197.6}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &396347366
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396347364}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9c40b03bf6ac4146b7582ecc2bcbe4d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &396347367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15698,6 +15685,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396347364}
   m_CullTransparentMesh: 1
+--- !u!111 &396347369
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396347364}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8517fbe5295db3c48a550614c5281b91, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8517fbe5295db3c48a550614c5281b91, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &397060426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a2701ae8e217fa40bb60db5d537de27, type: 3}
