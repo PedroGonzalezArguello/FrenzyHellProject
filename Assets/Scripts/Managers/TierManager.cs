@@ -24,20 +24,23 @@ public class TierManager : MonoBehaviour
         }
     }
 
-    private void ResetTier()
+    public void ResetTier()
     {
         _actualTier = 0;
         if (_tierText != null)
         {
             _tierText.gameObject.SetActive(false);
-        }   
+            BuffManager.Instance.RemoveBuff();
+        }
     }
 
-    private void CheckActualTier()
+    public void CheckActualTier()
     {
-        if (PointsManager.Instance.PointsInCooldown > _tiers[_actualTier].points && _actualTier < _tiers.Length-1)
+        if (PointsManager.Instance.PointsInCooldown > _tiers[_actualTier].points && _actualTier < _tiers.Length - 1)
         {
             _actualTier++;
+            BuffManager.Instance.Buff(_actualTier); // Pasar el índice actual al BuffManager
+            Debug.Log($"Nuevo Tier: {_tiers[_actualTier].name} - Velocidad ajustada.");
         }
     }
 }

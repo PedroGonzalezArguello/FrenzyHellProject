@@ -9,7 +9,8 @@ public class DavesPM : MonoBehaviour
 {
     [SerializeField]
     [Header("<color=blue>Movement</color>")]
-    private float moveSpeed;
+    public float moveSpeed;
+    public float extraMoveSpeed = 0;
     public float walkSpeed;
     //public float sprintSpeed;
     public float slideSpeed;
@@ -63,7 +64,7 @@ public class DavesPM : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
-    private KeyCode _slamKey = KeyCode.LeftControl;
+    private KeyCode _slamKey = KeyCode.C;
     //public KeyCode sprintKey = KeyCode.LeftShift;
     //public KeyCode crouchKey = KeyCode.LeftControl;
 
@@ -428,7 +429,7 @@ public class DavesPM : MonoBehaviour
 
         // on ground
         else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed + extraMoveSpeed) * 10f, ForceMode.Force);
 
         // in air
         else if (!grounded)

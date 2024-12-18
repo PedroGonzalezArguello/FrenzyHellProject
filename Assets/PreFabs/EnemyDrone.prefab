@@ -289,15 +289,19 @@ MonoBehaviour:
   _movementSpeed: 28
   _playerInSightRange: 0
   _playerInAttackRange: 0
-  _sightRange: 200
+  _sightRange: 100
   _attackRange: 70
   _pointsOnKill: 15
+  obstacleRange: 5
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
   _pointsOnDeath: 15
   shootPoint: {fileID: 2414512636879846101}
   animator: {fileID: 7540893702993531069}
   timeBetweenAttacks: 0.2
   upwardForce: 0
-  fowardForce: 60
+  fowardForce: 40
   alreadyAttacked: 0
   projectile: {fileID: 7546153332670608377, guid: fc30bbc9348969346bc0c2e65827da62, type: 3}
   patrolXDistance: 0

@@ -32,12 +32,12 @@ public class KamikazeDrone : Enemy
         {
             _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
             _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
-            if (_playerInSightRange && !_playerInAttackRange)
+            if (_playerInSightRange && !_playerInAttackRange && LineOfSight(transform.position, _player.position))
             {
                 ChasePlayer();    
                 transform.LookAt(_player.position);
             }
-            if (_playerInAttackRange && _playerInSightRange)
+            if (_playerInAttackRange && _playerInSightRange && LineOfSight(transform.position, _player.position))
             {
                 PrepareAndAttackPlayer();
                 transform.LookAt(_player.position);
@@ -50,7 +50,10 @@ public class KamikazeDrone : Enemy
         // Actualizar la posición del enemigo hacia el jugador, incluyendo el eje Y
         Vector3 playerPosition = _player.position;
         Vector3 moveDirection = (playerPosition - transform.position).normalized;
-        transform.position += moveDirection * _movementSpeed * Time.deltaTime;
+        Vector3 obstacleAvoidance = ObstacleAvoidance();
+        Vector3 finalDirection = (moveDirection + obstacleAvoidance).normalized;
+        transform.position += finalDirection * _movementSpeed * Time.deltaTime;
+
         Anim.Play();
     }
 
@@ -75,7 +78,7 @@ public class KamikazeDrone : Enemy
         foreach (Collider collider in colliders)
         {
             // Verifica si el objeto detectado es el jugador
-            if (collider.GetComponent<DavesPM>() != null)
+            if (collider.GetComponent<DavesPM>() != null || collider.CompareTag("Player"))
             {
                 _frenzyManager.TakeDamage(explosionDamage);
             }

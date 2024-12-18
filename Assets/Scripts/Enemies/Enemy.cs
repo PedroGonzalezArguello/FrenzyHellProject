@@ -23,6 +23,10 @@ public abstract class Enemy : Entity, IDamageable
     [SerializeField] protected float _sightRange, _attackRange;
     [SerializeField] protected float _pointsOnKill;
 
+    [Header("Obstacle Avoidance")]
+    [SerializeField] protected float obstacleRange = 1.5f;
+    [SerializeField] protected LayerMask _obstacleMask;
+
     protected bool _hasExploded;
     [SerializeField]protected int _pointsOnDeath;
 
@@ -76,7 +80,30 @@ public abstract class Enemy : Entity, IDamageable
             Destroy(gameObject);
         }
     }
+    public static bool LineOfSight(Vector3 from, Vector3 to)
+    {
+        var dir = to - from;
+        return !Physics.Raycast(from, dir, dir.magnitude, LayerMask.GetMask("Wall"));
+    }
+    public Vector3 ObstacleAvoidance()
+    {
+        var obstacles = Physics.OverlapSphere(transform.position, obstacleRange, _obstacleMask);
+        Debug.Log(obstacles.Length);
 
+        if (obstacles.Length <= 0) return Vector3.zero;
+
+        var obstacleDir = Vector3.zero;
+
+        foreach (var obstacle in obstacles)
+        {
+            Debug.Log(obstacle.gameObject.name);
+            obstacleDir += transform.position - obstacle.transform.position;
+        }
+
+        obstacleDir.y = 0f;
+
+        return obstacleDir;
+    }
     protected virtual void Awake()
     {
         _player = GameObject.Find("Player")?.transform;
