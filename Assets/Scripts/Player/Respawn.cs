@@ -11,6 +11,7 @@ public class Respawn : MonoBehaviour
     public Rigidbody rb;
     public KeyCode reloadButton = KeyCode.Y;
     public GameManager gameManager;
+    public string respawnTag = "water";
 
     private void Update()
     {
@@ -19,7 +20,13 @@ public class Respawn : MonoBehaviour
             gameManager.ShowDefeatScreen();
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(respawnTag))
+        {
+            gameManager.ShowDefeatScreen();
+        }
+    }
     public void RespawnOnFall()
     {
         frenzyManager.currentFrenzy = frenzyManager.startingFrenzy;

@@ -17,6 +17,7 @@ TagManager:
   - Turret
   - SpawnPoint
   - Rooms
+  - water
   layers:
   - Default
   - TransparentFX
