@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211c37a9a2839874bae4646bd3e68828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 500
   fireRate: 4
   lifeTime: 2
   hitPrefab: {fileID: 1969298186216383035, guid: d410ab090faa46c44a53b2732a02e75a, type: 3}
@@ -5069,7 +5069,7 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 10
   m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
